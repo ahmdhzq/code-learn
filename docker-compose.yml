@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db_proyek
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: laravel_db
+      POSTGRES_USER: laravel_user
+      POSTGRES_PASSWORD: secret_password # Ganti dengan password Anda
+    ports:
+      - "5432:5432" # Penting untuk koneksi dari luar Docker
+    volumes:
+      - ./docker-data/db:/var/lib/postgresql/data
