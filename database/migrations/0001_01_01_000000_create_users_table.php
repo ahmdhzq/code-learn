@@ -17,6 +17,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            // 'role' untuk membedakan 'user' dan 'admin'
+            $table->string('role')->default('user'); 
+            
+            // 'points' untuk sistem gamifikasi
+            $table->unsignedInteger('points')->default(0); 
+            
+            // 'rank' untuk sistem peringkat
+            $table->string('rank')->default('Bronze'); 
+
             $table->rememberToken();
             $table->timestamps();
         });

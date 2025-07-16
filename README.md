@@ -1,62 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CodeLearn - Platform Edukasi Koding Interaktif
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+CodeLearn adalah sebuah website edukasi yang dirancang untuk membuat belajar koding menjadi lebih interaktif dan menyenangkan. Platform ini menggunakan Laravel untuk backend dan PostgreSQL sebagai database.
 
-## About Laravel
+## ✅ Fitur yang Sudah Selesai
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Berikut adalah daftar fitur yang sudah berhasil diimplementasikan sejauh ini:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [x] **Konfigurasi Proyek & Database**
+    -   [x] Proyek Laravel 11.
+    -   [x] Opsi database PostgreSQL menggunakan Docker atau instalasi lokal.
+-   [x] **Sistem Autentikasi & Peran**
+    -   [x] Registrasi dan Login Pengguna (Laravel Breeze).
+    -   [x] Sistem Peran untuk membedakan `user` dan `admin`.
+    -   [x] Middleware untuk memproteksi rute khusus admin.
+-   [x] **Panel Administrasi**
+    -   [x] Halaman dashboard khusus untuk admin yang aman.
+    -   [x] Logika pengalihan (redirect) otomatis setelah login sesuai peran.
+    -   [x] Controller dan View dasar untuk panel admin.
+-   [ ] **Manajemen Jalur Belajar (Learning Tracks)**
+    -   [ ] CRUD (Create, Read, Update, Delete) untuk Tracks.
+-   [ ] **Manajemen Materi Edukasi**
+-   [ ] **Sistem Kuis**
+-   [ ] **Sistem Komunitas (Komentar)**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📂 Struktur Proyek
 
-## Learning Laravel
+Struktur folder utama proyek ini adalah sebagai berikut:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+code-learn/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Auth/            # Controller untuk autentikasi (dari Breeze)
+│   │   │   └── Admin/           # Controller khusus untuk panel admin
+│   │   │       ├── DashboardController.php
+│   │   │       └── TrackController.php
+│   │   └── Middleware/
+│   │       └── AdminMiddleware.php
+│   └── Models/
+│       ├── User.php
+│       └── Track.php
+├── bootstrap/
+│   └── app.php                  # Tempat mendaftarkan middleware
+├── config/
+├── database/
+│   └── migrations/              # File-file migrasi database
+├── public/
+├── resources/
+│   └── views/
+│       ├── auth/                # View untuk login, register, dll.
+│       └── admin/               # View khusus untuk panel admin
+│           ├── dashboard.blade.php
+│           └── tracks/
+├── routes/
+│   ├── web.php                  # Definisi rute utama dan admin
+│   └── auth.php                 # Rute autentikasi (dari Breeze)
+├── tests/
+├── docker-data/                 # Folder data database (diabaikan oleh Git)
+├── .env                         # File konfigurasi lingkungan (SANGAT PENTING)
+├── .gitignore                   # File yang diabaikan oleh Git
+├── composer.json                # Dependensi PHP
+├── docker-compose.yml           # Konfigurasi untuk menjalankan database Docker (Opsional)
+└── package.json                 # Dependensi JavaScript/CSS
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Cara Instalasi & Menjalankan Proyek
 
-## Laravel Sponsors
+Panduan ini berlaku untuk **Windows, macOS, dan Linux**.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prasyarat
 
-### Premium Partners
+Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
+1.  **Git**: Untuk mengunduh repositori.
+2.  **PHP**: Versi 8.2 atau lebih baru.
+3.  **Composer**: Manajer dependensi untuk PHP.
+4.  **Node.js & NPM**: Untuk mengelola aset frontend (CSS, JS).
+5.  **PostgreSQL** ATAU **Docker**: Anda hanya perlu salah satu untuk database.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Langkah-langkah Instalasi
 
-## Contributing
+1.  **Clone Repositori**
+    Buka terminal atau command prompt, navigasi ke direktori kerja Anda, dan jalankan:
+    ```bash
+    git clone [https://github.com/ahmdhzq/code-learn.git](https://github.com/ahmdhzq/code-learn.git)
+    cd code-learn
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2.  **Buat File Konfigurasi Lingkungan (`.env`)**
+    Salin file contoh `.env.example` menjadi `.env`.
+    ```bash
+    # Untuk Linux/macOS
+    cp .env.example .env
 
-## Code of Conduct
+    # Untuk Windows
+    copy .env.example .env
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3.  **Instal Dependensi PHP**
+    ```bash
+    composer install
+    ```
 
-## Security Vulnerabilities
+4.  **Generate Kunci Aplikasi**
+    ```bash
+    php artisan key:generate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5.  **Konfigurasi Database (Pilih Salah Satu Opsi)**
+    Pilih salah satu cara untuk menyiapkan database Anda.
 
-## License
+    ---
+    #### **Opsi A: Menggunakan Docker (Direkomendasikan)**
+    Cara ini paling mudah dan konsisten di semua sistem operasi.
+    a. Pastikan Docker Desktop (Windows/macOS) atau service Docker (Linux) berjalan.
+    b. Jalankan perintah ini dari folder proyek:
+        ```bash
+        docker-compose up -d
+        ```
+    c. Konfigurasi file `.env` Anda sebagai berikut:
+        ```env
+        DB_CONNECTION=pgsql
+        DB_HOST=127.0.0.1
+        DB_PORT=5432
+        DB_DATABASE=laravel_db
+        DB_USERNAME=laravel_user
+        DB_PASSWORD=secret_password
+        ```
+    ---
+    #### **Opsi B: Menggunakan PostgreSQL Lokal (Tanpa Docker)**
+    Gunakan cara ini jika Anda sudah menginstal PostgreSQL langsung di komputer Anda.
+    a. Pastikan service PostgreSQL berjalan.
+    b. Buat database baru (misalnya `codelearn_db`) dan user baru melalui pgAdmin atau baris perintah.
+    c. Konfigurasi file `.env` Anda sesuai dengan detail database lokal Anda:
+        ```env
+        DB_CONNECTION=pgsql
+        DB_HOST=127.0.0.1
+        DB_PORT=5432
+        DB_DATABASE=nama_database_lokal_anda
+        DB_USERNAME=user_database_lokal_anda
+        DB_PASSWORD=password_database_lokal_anda
+        ```
+    ---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# code-learn
+6.  **Jalankan Migrasi Database**
+    Setelah database siap (baik dari Docker maupun lokal), jalankan perintah ini untuk membuat semua tabel:
+    ```bash
+    php artisan migrate
+    ```
+
+7.  **Instal Dependensi Frontend**
+    ```bash
+    npm install
+    ```
+
+8.  **Jalankan Server Pengembangan**
+    Anda perlu menjalankan dua server secara bersamaan di dua terminal terpisah.
+
+    * **Terminal 1 (Backend Laravel):**
+        ```bash
+        php artisan serve
+        ```
+        Aplikasi Anda akan berjalan di `http://127.0.0.1:8000`.
+
+    * **Terminal 2 (Frontend Vite):**
+        ```bash
+        npm run dev
+        ```
+        Server ini akan mengkompilasi aset CSS dan JavaScript secara otomatis.
+
+**Selesai!** Anda sekarang bisa membuka `http://127.0.0.1:8000` di browser Anda dan mulai mengembangkan.
