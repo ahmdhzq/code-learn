@@ -43,7 +43,7 @@ Berikut adalah status pengembangan fitur-fitur utama untuk Admin Panel:
 - **Backend**: Laravel 11
 - **Frontend**: Blade, Bootstrap 5, CSS Kustom
 - **JavaScript**: Chart.js untuk visualisasi data, jQuery
-- **Database**: MySQL
+- **Database**: PostgreSQL
 - **Development Tool**: Vite
 
 ---
@@ -78,11 +78,11 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 5.  **Konfigurasi Database**
     Buka file `.env` dan sesuaikan konfigurasi database Anda.
     ```
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=codelearn
-    DB_USERNAME=root
+    DB_CONNECTION=pgsql
+    DB_HOST=127.0.0.1  
+    DB_PORT=5432
+    DB_DATABASE=laravel_db      
+    DB_USERNAME=laravel_user    
     DB_PASSWORD=
     ```
 
