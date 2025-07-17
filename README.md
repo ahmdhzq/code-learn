@@ -1,174 +1,157 @@
-# CodeLearn - Platform Edukasi Koding Interaktif
+ # 🚀 CodeLearn - Platform Edukasi Koding Interaktif
 
-CodeLearn adalah sebuah website edukasi yang dirancang untuk membuat belajar koding menjadi lebih interaktif dan menyenangkan. Platform ini menggunakan Laravel untuk backend dan PostgreSQL sebagai database.
+![Tangkapan Layar Dashboard Admin](https://i.imgur.com/lO5aLzB.png) 
+*Catatan: Ganti URL di atas dengan tangkapan layar dashboard Anda yang sebenarnya.*
 
-## ✅ Fitur yang Sudah Selesai
-
-Berikut adalah daftar fitur yang sudah berhasil diimplementasikan sejauh ini:
-
--   [x] **Konfigurasi Proyek & Database**
-    -   [x] Proyek Laravel 11.
-    -   [x] Opsi database PostgreSQL menggunakan Docker atau instalasi lokal.
--   [x] **Sistem Autentikasi & Peran**
-    -   [x] Registrasi dan Login Pengguna (Laravel Breeze).
-    -   [x] Sistem Peran untuk membedakan `user` dan `admin`.
-    -   [x] Middleware untuk memproteksi rute khusus admin.
--   [x] **Panel Administrasi**
-    -   [x] Halaman dashboard khusus untuk admin yang aman.
-    -   [x] Logika pengalihan (redirect) otomatis setelah login sesuai peran.
-    -   [x] Controller dan View dasar untuk panel admin.
--   [ ] **Manajemen Jalur Belajar (Learning Tracks)**
-    -   [ ] CRUD (Create, Read, Update, Delete) untuk Tracks.
--   [ ] **Manajemen Materi Edukasi**
--   [ ] **Sistem Kuis**
--   [ ] **Sistem Komunitas (Komentar)**
-
-## 📂 Struktur Proyek
-
-Struktur folder utama proyek ini adalah sebagai berikut:
-
-```
-code-learn/
-├── app/
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   ├── Auth/            # Controller untuk autentikasi (dari Breeze)
-│   │   │   └── Admin/           # Controller khusus untuk panel admin
-│   │   │       ├── DashboardController.php
-│   │   │       └── TrackController.php
-│   │   └── Middleware/
-│   │       └── AdminMiddleware.php
-│   └── Models/
-│       ├── User.php
-│       └── Track.php
-├── bootstrap/
-│   └── app.php                  # Tempat mendaftarkan middleware
-├── config/
-├── database/
-│   └── migrations/              # File-file migrasi database
-├── public/
-├── resources/
-│   └── views/
-│       ├── auth/                # View untuk login, register, dll.
-│       └── admin/               # View khusus untuk panel admin
-│           ├── dashboard.blade.php
-│           └── tracks/
-├── routes/
-│   ├── web.php                  # Definisi rute utama dan admin
-│   └── auth.php                 # Rute autentikasi (dari Breeze)
-├── tests/
-├── docker-data/                 # Folder data database (diabaikan oleh Git)
-├── .env                         # File konfigurasi lingkungan (SANGAT PENTING)
-├── .gitignore                   # File yang diabaikan oleh Git
-├── composer.json                # Dependensi PHP
-├── docker-compose.yml           # Konfigurasi untuk menjalankan database Docker (Opsional)
-└── package.json                 # Dependensi JavaScript/CSS
-```
+CodeLearn adalah sebuah platform edukasi berbasis web yang dirancang untuk membuat proses belajar koding menjadi lebih interaktif, terstruktur, dan menyenangkan. Proyek ini dibangun menggunakan Laravel sebagai backend dan dirancang untuk memenuhi kebutuhan Ujian Akhir Semester (UAS).
 
 ---
 
-## 🚀 Cara Instalasi & Menjalankan Proyek
+## ✨ Fitur Utama
 
-Panduan ini berlaku untuk **Windows, macOS, dan Linux**.
+Berdasarkan *Software Requirement Specification* (SRS), platform ini memiliki dua peran utama dengan fitur yang berbeda:
 
-### Prasyarat
+### 👤 Peran Admin
+- **Dashboard Analitik**: Melihat ringkasan statistik platform seperti jumlah pengguna, tracks, materi, dan kuis dalam bentuk kartu dan grafik.
+- **Manajemen Tracks (CRUD)**: Membuat, membaca, memperbarui, dan menghapus jalur belajar (learning tracks).
+- **Manajemen Materi (CRUD)**: Mengelola konten pembelajaran (artikel, video, PDF) di dalam setiap track.
+- **Manajemen Kuis (CRUD)**: Membuat dan mengelola soal-soal kuis untuk setiap materi.
+- **Manajemen Pengguna**: Mengelola pengguna yang terdaftar di platform.
 
-Pastikan perangkat lunak berikut sudah terinstal di komputer Anda:
-1.  **Git**: Untuk mengunduh repositori.
-2.  **PHP**: Versi 8.2 atau lebih baru.
-3.  **Composer**: Manajer dependensi untuk PHP.
-4.  **Node.js & NPM**: Untuk mengelola aset frontend (CSS, JS).
-5.  **PostgreSQL** ATAU **Docker**: Anda hanya perlu salah satu untuk database.
+### 🎓 Peran Pengguna (User)
+- **Dashboard Pengguna**: Melihat progres belajar, poin, dan peringkat.
+- **Akses Materi**: Mempelajari semua materi yang tersedia dalam format artikel, video, atau PDF.
+- **Mengerjakan Kuis**: Menguji pemahaman melalui kuis pilihan ganda dan melihat skor secara langsung.
+- **Diskusi**: Berinteraksi dengan pengguna lain melalui kolom komentar di setiap materi.
 
-### Langkah-langkah Instalasi
+---
 
-1.  **Clone Repositori**
-    Buka terminal atau command prompt, navigasi ke direktori kerja Anda, dan jalankan:
+## 📈 Progres Pengembangan
+
+Berikut adalah status pengembangan fitur-fitur utama untuk Admin Panel:
+
+- [x] **Dashboard Analitik**: Tampilan statistik dengan kartu dan grafik (menggunakan data dummy).
+- [x] **Manajemen Tracks (CRUD)**: Fungsionalitas penuh untuk membuat, melihat, mengedit, dan menghapus tracks.
+- [ ] **Manajemen Materi (CRUD)**: Fitur selanjutnya yang akan dikerjakan.
+- [ ] **Manajemen Kuis (CRUD)**
+- [ ] **Manajemen Pengguna**
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **Backend**: Laravel 11
+- **Frontend**: Blade, Bootstrap 5, CSS Kustom
+- **JavaScript**: Chart.js untuk visualisasi data, jQuery
+- **Database**: MySQL
+- **Development Tool**: Vite
+
+---
+
+## ⚙️ Instalasi & Setup Proyek
+
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal Anda.
+
+1.  **Clone Repository**
     ```bash
-    git clone [https://github.com/ahmdhzq/code-learn.git](https://github.com/ahmdhzq/code-learn.git)
-    cd code-learn
+    git clone [URL_REPOSITORY_ANDA]
+    cd codelearn
     ```
 
-2.  **Buat File Konfigurasi Lingkungan (`.env`)**
-    Salin file contoh `.env.example` menjadi `.env`.
-    ```bash
-    # Untuk Linux/macOS
-    cp .env.example .env
-
-    # Untuk Windows
-    copy .env.example .env
-    ```
-
-3.  **Instal Dependensi PHP**
+2.  **Install Dependensi PHP**
+    Pastikan Anda memiliki Composer terinstal.
     ```bash
     composer install
     ```
 
-4.  **Generate Kunci Aplikasi**
+3.  **Buat File Environment**
+    Salin file `.env.example` menjadi `.env`.
+    ```bash
+    cp .env.example .env
+    ```
+
+4.  **Generate Application Key**
     ```bash
     php artisan key:generate
     ```
 
-5.  **Konfigurasi Database (Pilih Salah Satu Opsi)**
-    Pilih salah satu cara untuk menyiapkan database Anda.
-
-    ---
-    #### **Opsi A: Menggunakan Docker (Direkomendasikan)**
-    Cara ini paling mudah dan konsisten di semua sistem operasi.
-    a. Pastikan Docker Desktop (Windows/macOS) atau service Docker (Linux) berjalan.
-    b. Jalankan perintah ini dari folder proyek:
-        ```bash
-        docker-compose up -d
-        ```
-    c. Konfigurasi file `.env` Anda sebagai berikut:
-        ```env
-        DB_CONNECTION=pgsql
-        DB_HOST=127.0.0.1
-        DB_PORT=5432
-        DB_DATABASE=laravel_db
-        DB_USERNAME=laravel_user
-        DB_PASSWORD=secret_password
-        ```
-    ---
-    #### **Opsi B: Menggunakan PostgreSQL Lokal (Tanpa Docker)**
-    Gunakan cara ini jika Anda sudah menginstal PostgreSQL langsung di komputer Anda.
-    a. Pastikan service PostgreSQL berjalan.
-    b. Buat database baru (misalnya `codelearn_db`) dan user baru melalui pgAdmin atau baris perintah.
-    c. Konfigurasi file `.env` Anda sesuai dengan detail database lokal Anda:
-        ```env
-        DB_CONNECTION=pgsql
-        DB_HOST=127.0.0.1
-        DB_PORT=5432
-        DB_DATABASE=nama_database_lokal_anda
-        DB_USERNAME=user_database_lokal_anda
-        DB_PASSWORD=password_database_lokal_anda
-        ```
-    ---
+5.  **Konfigurasi Database**
+    Buka file `.env` dan sesuaikan konfigurasi database Anda.
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=codelearn
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 
 6.  **Jalankan Migrasi Database**
-    Setelah database siap (baik dari Docker maupun lokal), jalankan perintah ini untuk membuat semua tabel:
+    Perintah ini akan membuat semua tabel yang diperlukan di database Anda.
     ```bash
     php artisan migrate
     ```
 
-7.  **Instal Dependensi Frontend**
+7.  **(Opsional) Jalankan Seeder**
+    Jika Anda memiliki seeder untuk data awal (dummy data), jalankan perintah ini.
+    ```bash
+    php artisan db:seed
+    ```
+
+8.  **Install Dependensi Node.js**
+    Pastikan Anda memiliki Node.js dan NPM terinstal.
     ```bash
     npm install
     ```
 
-8.  **Jalankan Server Pengembangan**
-    Anda perlu menjalankan dua server secara bersamaan di dua terminal terpisah.
+9.  **Compile Aset Frontend**
+    Jalankan Vite untuk memantau perubahan pada file CSS/JS.
+    ```bash
+    npm run dev
+    ```
 
-    * **Terminal 1 (Backend Laravel):**
-        ```bash
-        php artisan serve
-        ```
-        Aplikasi Anda akan berjalan di `http://127.0.0.1:8000`.
+10. **Jalankan Server Development**
+    Buka terminal baru dan jalankan server Laravel.
+    ```bash
+    php artisan serve
+    ```
 
-    * **Terminal 2 (Frontend Vite):**
-        ```bash
-        npm run dev
-        ```
-        Server ini akan mengkompilasi aset CSS dan JavaScript secara otomatis.
+Sekarang, proyek Anda dapat diakses di `http://127.0.0.1:8000`.
 
-**Selesai!** Anda sekarang bisa membuka `http://127.0.0.1:8000` di browser Anda dan mulai mengembangkan.
+---
+
+## 📂 Struktur Folder Penting (Untuk Tim)
+
+Untuk memudahkan kolaborasi, berikut adalah penjelasan singkat mengenai di mana harus meletakkan file:
+
+-   `app/Http/Controllers/Admin/`
+    > Semua logika untuk fitur-fitur di panel admin (seperti `DashboardController`, `TrackController`) diletakkan di sini.
+
+-   `app/Models/`
+    > Tempat untuk semua model Eloquent yang merepresentasikan tabel di database (misalnya `User.php`, `Track.php`).
+
+-   `routes/web.php`
+    > Semua route untuk aplikasi web didefinisikan di sini. Kita menggunakan *grouping* untuk memisahkan route admin.
+
+-   `resources/views/`
+    -   `admin/`: Semua file view khusus untuk panel admin.
+        -   `dashboard.blade.php`: Tampilan dashboard.
+        -   `tracks/`: Folder untuk view CRUD tracks (`index`, `create`, `edit`).
+    -   `layouts/`: "Bingkai" atau template utama halaman.
+        -   `admin.blade.php`: Layout dasar untuk semua halaman admin.
+    -   `partials/`: Potongan-potongan view yang bisa dipakai ulang.
+        -   `admin-sidebar.blade.php`: Kode untuk sidebar admin.
+        -   `admin-navbar.blade.php`: Kode untuk navbar admin.
+
+-   `public/css/`
+    > File CSS kustom seperti `modern-admin.css` diletakkan di sini.
+
+---
+
+## 👨‍💻 Kontributor
+
+-   [Nama Anda] - Project Manager / Full-stack
+-   [Nama Teman 1] - Backend Developer
+-   [Nama Teman 2] - Frontend Developer
+
+Terima kasih telah berkontribusi pada proyek CodeLearn!
