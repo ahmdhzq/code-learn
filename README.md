@@ -82,7 +82,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 5.  **Konfigurasi Database**
     Buka file `.env` dan sesuaikan konfigurasi database Anda.
     ```
-    DB_CONNECTION=mysql
+    DB_CONNECTION=pgsql
     DB_HOST=127.0.0.1  
     DB_PORT=3306
     DB_DATABASE=codelearn
