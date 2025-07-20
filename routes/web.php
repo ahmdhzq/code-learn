@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 // Impor controller-controller untuk admin
@@ -75,6 +76,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // Rute resource untuk mengelola Pertanyaan (Question) di dalam sebuah Kuis (Quiz)
     Route::resource('quizzes.questions', QuestionController::class)->except(['index', 'show'])->shallow();
+
+    // RUTE BARU UNTUK MANAJEMEN KOMENTAR
+    Route::resource('comments', CommentController::class)->only(['index', 'destroy']);
 });
 
 

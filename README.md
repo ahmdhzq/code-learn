@@ -16,6 +16,7 @@ Berdasarkan *Software Requirement Specification* (SRS), platform ini memiliki du
 - **Manajemen Tracks (CRUD)**: Membuat, membaca, memperbarui, dan menghapus jalur belajar (learning tracks).
 - **Manajemen Materi (CRUD)**: Mengelola konten pembelajaran (artikel, video, PDF) di dalam setiap track.
 - **Manajemen Kuis (CRUD)**: Membuat dan mengelola soal-soal kuis untuk setiap materi, termasuk pertanyaan dan jawaban.
+- **Manajemen Komentar**: Memoderasi semua komentar yang ada di platform.
 - **Manajemen Pengguna**: Mengelola pengguna yang terdaftar di platform.
 
 ### 🎓 Peran Pengguna (User)
@@ -34,6 +35,7 @@ Berikut adalah status pengembangan fitur-fitur utama platform hingga saat ini:
 - [x] **Manajemen Materi (CRUD)**: Fungsionalitas penuh untuk mengelola materi (Artikel, Video, PDF), termasuk upload file.
 - [x] **Manajemen Kuis (CRUD)**: Fungsionalitas penuh untuk mengelola kuis dan pertanyaan (tambah, edit, hapus) untuk setiap materi.
 - [x] **Manajemen Pengguna**: Admin dapat melihat daftar pengguna dan menghapus pengguna dari sistem.
+- [x] **Manajemen Komentar**: Admin dapat melihat, memfilter, dan menghapus semua komentar di platform.
 - [ ] **Dashboard Analitik**: Halaman sudah ada, namun perlu dihubungkan dengan data dinamis.
 
 ### Sisi Pengguna

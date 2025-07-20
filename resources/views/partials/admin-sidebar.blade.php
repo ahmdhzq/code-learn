@@ -40,6 +40,13 @@
                 <span>Manajemen Pengguna</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.comments.index') }}"
+                class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
+                <i class="fas fa-message fa-fw"></i>
+                <span>Manajemen Komentar</span>
+            </a>
+        </li>
     </ul>
 
     <div class="mt-auto">
