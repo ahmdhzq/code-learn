@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 // Impor controller-controller untuk admin
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MaterialController;
+use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\TrackController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,16 +49,34 @@ Route::middleware('auth')->group(function () {
 |
 */
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    
+
+    // RUTE BARU UNTUK MANAJEMEN PENGGUNA
+    Route::resource('users', UserController::class)->only(['index','destroy']);
+
     // Rute untuk halaman utama panel admin
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Rute untuk manajemen track
     Route::resource('tracks', TrackController::class);
 
-    // Nanti rute untuk manajemen materi, kuis, dll. akan ditambahkan di sini.
+    // Route untuk Materials yang berada di dalam sebuah Track
+    Route::resource('tracks.materials', MaterialController::class);
+
+    // Route untuk menampilkan semua materi dari semua track
+    Route::get('/materials', [MaterialController::class, 'all'])->name('materials.all');
+
+    // Route untuk menampilkan form tambah materi global
+    Route::get('/materials/create', [MaterialController::class, 'createGlobal'])->name('materials.create_global');
+
+    // Rute untuk menampilkan & update detail kuis (Judul & Deskripsi)
+    // Parameter {material} digunakan agar kita tahu kuis ini milik materi yang mana
+    Route::get('quizzes/{material}', [QuizController::class, 'show'])->name('quizzes.show');
+    Route::put('quizzes/{quiz}', [QuizController::class, 'update'])->name(name: 'quizzes.update');
+    
+    // Rute resource untuk mengelola Pertanyaan (Question) di dalam sebuah Kuis (Quiz)
+    Route::resource('quizzes.questions', QuestionController::class)->except(['index', 'show'])->shallow();
 });
 
 
 // Memuat rute autentikasi (login, register, dll.) dari file terpisah
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -33,7 +33,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <div class="flex-grow-1">
-                        <h6 class="text-muted mb-1">Total Tracks</h6>
+                        <h6 class="text-muted mb-1">Total Learning Path</h6>
                         <h3 class="fw-bold mb-2">{{ number_format($totalTracks) }}</h3>
                         <small class="text-muted">Jalur belajar tersedia</small>
                     </div>
@@ -51,7 +51,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <div class="flex-grow-1">
-                        <h6 class="text-muted mb-1">Total Materi</h6>
+                        <h6 class="text-muted mb-1">Total Modul</h6>
                         <h3 class="fw-bold mb-2">{{ number_format($totalMaterials) }}</h3>
                         <small class="text-success">
                             <i class="fas fa-arrow-up me-1"></i>
@@ -119,7 +119,7 @@
         <div class="card stat-card h-100">
             <div class="card-header bg-transparent border-0 pb-0">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0 fw-semibold">Tracks Terbaru</h5>
+                    <h5 class="card-title mb-0 fw-semibold">Learning Path Terbaru</h5>
                     <a href="{{ route('admin.tracks.index') }}" class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-external-link-alt me-1"></i>
                         Lihat Semua
