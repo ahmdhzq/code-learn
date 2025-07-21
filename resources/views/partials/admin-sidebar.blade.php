@@ -34,17 +34,17 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('admin.users.index') }}"
-                class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                <i class="fas fa-users fa-fw"></i>
-                <span>Manajemen Pengguna</span>
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{ route('admin.comments.index') }}"
                 class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
                 <i class="fas fa-message fa-fw"></i>
                 <span>Manajemen Komentar</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.users.index') }}"
+                class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                <i class="fas fa-users fa-fw"></i>
+                <span>Manajemen Pengguna</span>
             </a>
         </li>
     </ul>

@@ -59,4 +59,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Submission::class);
     }
+
+    // Relasi: User memiliki banyak materi yang telah diselesaikan
+    public function completedMaterials()
+    {
+        return $this->belongsToMany(Material::class, 'user_material_progress');
+    }
+
+    /**
+     * Relasi untuk mengambil semua track yang diikuti oleh pengguna.
+     */
+    public function enrolledTracks()
+    {
+        return $this->belongsToMany(Track::class);
+    }
 }

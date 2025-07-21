@@ -20,4 +20,12 @@ class Track extends Model
     {
         return $this->hasMany(Material::class);
     }
+
+    /**
+     * Relasi untuk mengambil semua pengguna yang mengikuti track ini.
+     */
+    public function enrolledUsers()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
