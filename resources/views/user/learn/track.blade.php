@@ -22,23 +22,16 @@
             <div class="container py-5">
                 {{-- Header dengan Progress Bar --}}
                 <div class="mb-5">
-                    <h1 class="fw-bold display-5">{{ $track->name }}</h1>
+                    {{-- Judul dan badge "Terdaftar" akan berada dalam satu baris --}}
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <h1 class="fw-bold display-5 mb-0">{{ $track->name }}</h1>
+                        @if ($isEnrolled)
+                            <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3 py-2 fs-6">
+                                <i class="fas fa-check-circle me-1"></i> Terdaftar
+                            </span>
+                        @endif
+                    </div>
                     <p class="text-muted fs-5">{{ $track->description }}</p>
-
-                    {{-- [BARU] Tombol untuk mengambil jalur belajar --}}
-                    @if (!$isEnrolled)
-                        <form action="{{ route('learn.track.enroll', $track) }}" method="POST" class="mt-4">
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-lg fw-semibold">
-                                <i class="fas fa-plus-circle me-2"></i> Ambil Jalur Belajar Ini
-                            </button>
-                        </form>
-                    @else
-                        <div class="alert alert-success mt-4">
-                            <i class="fas fa-check-circle me-2"></i> Anda sudah terdaftar di jalur belajar ini.
-                        </div>
-                    @endif
-
                     {{-- Progress Bar (hanya tampil jika sudah terdaftar) --}}
                     @if ($isEnrolled)
                         <div class="d-flex align-items-center mt-4">
@@ -56,34 +49,34 @@
             <h3 class="fw-semibold mb-4">Daftar Materi</h3>
             <div class="list-group list-group-flush">
                 @forelse ($materials as $material)
-                    {{-- [BARU] Cek apakah materi sudah selesai --}}
                     @php $isCompleted = $completedMaterials->contains($material->id); @endphp
 
                     <div
-                        class="list-group-item d-flex justify-content-between align-items-center p-3 mb-3 border rounded-3 {{ $isCompleted ? 'bg-light' : '' }}">
+                        class="list-group-item d-flex justify-content-between align-items-center p-3 mb-2 border-0 rounded-3 {{ $isCompleted ? 'bg-light' : '' }}">
                         <div class="d-flex align-items-center">
-                            <span class="fa-stack fa-2x me-4">
+
+                            {{-- [1] Tampilkan Nomor Urut --}}
+                            <div class="fs-4 fw-bold text-muted me-4" style="width: 2rem; text-align: center;">
+                                {{ $loop->iteration }}</div>
+
+                            {{-- Lingkaran ikon --}}
+                            <span class="fa-stack fa-2x me-3">
                                 <i
                                     class="fas fa-circle fa-stack-2x {{ $isCompleted ? 'text-success' : 'text-primary-subtle' }}"></i>
                                 @if ($isCompleted)
+                                    {{-- [2] Tampilkan centang jika selesai --}}
                                     <i class="fas fa-check fa-stack-1x text-white"></i>
-                                @elseif ($material->type === 'video')
-                                    <i class="fas fa-play fa-stack-1x text-primary"></i>
-                                @elseif ($material->type === 'article')
-                                    <i class="fas fa-file-alt fa-stack-1x text-primary"></i>
-                                @else
-                                    <i class="fas fa-file-pdf fa-stack-1x text-primary"></i>
                                 @endif
                             </span>
+
                             <div>
-                                <h5
-                                    class="mb-0 fw-semibold {{ $isCompleted ? 'text-decoration-line-through text-muted' : '' }}">
-                                    {{ $material->title }}</h5>
-                                <small class="text-muted text-capitalize">{{ $material->type }}</small>
+                                {{-- [3] Hapus coretan pada teks judul --}}
+                                <h5 class="mb-0 fw-semibold">{{ $material->title }}</h5>
+                                {{-- Teks jenis materi (video/pdf/dll.) sudah dihapus --}}
                             </div>
+
                         </div>
-                        {{-- [BARU] Tombol dinamis --}}
-                        <a href="#"
+                        <a href="{{ route('learn.material.show', ['track' => $track, 'material' => $material]) }}"
                             class="btn {{ $isCompleted ? 'btn-success' : 'btn-outline-primary' }} fw-semibold">
                             {{ $isCompleted ? 'Lihat Lagi' : 'Lihat Materi' }} <i class="fas fa-arrow-right ms-2"></i>
                         </a>

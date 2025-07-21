@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
         return view('profile.show', ['user' => Auth::user()]);
     })->name('profile.show');
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
-     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
 });
 
 
@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::resource('users', UserController::class)->only(['index','destroy']);
+    Route::resource('users', UserController::class)->only(['index', 'destroy']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('tracks', TrackController::class);
     Route::resource('tracks.materials', MaterialController::class);
@@ -54,6 +54,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('quizzes/{quiz}', [QuizController::class, 'update'])->name(name: 'quizzes.update');
     Route::resource('quizzes.questions', QuestionController::class)->except(['index', 'show'])->shallow();
     Route::resource('comments', CommentController::class)->only(['index', 'destroy']);
+    Route::post('/materials', [MaterialController::class, 'storeGlobal'])->name('materials.store_global');
 });
 
 /*
@@ -66,6 +67,7 @@ Route::middleware(['auth', 'verified'])->prefix('learn')->name('learn.')->group(
     Route::get('/', [LearningController::class, 'index'])->name('index');
     Route::get('/track/{track}', [LearningController::class, 'showTrack'])->name('track.show');
     Route::post('/track/{track}/enroll', [LearningController::class, 'enroll'])->name('track.enroll');
+    Route::get('/track/{track}/material/{material}', [LearningController::class, 'showMaterial'])->name('material.show');
 });
 
 // Memuat rute autentikasi (login, register, dll.) dari file terpisah

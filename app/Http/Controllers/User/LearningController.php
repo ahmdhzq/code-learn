@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Track;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Material;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -63,5 +64,22 @@ class LearningController extends Controller
 
         // Arahkan langsung ke halaman detail track setelah berhasil
         return redirect()->route('learn.track.show', $track)->with('success', 'Anda berhasil mengambil jalur belajar ini!');
+    }
+
+    /**
+     * [BARU] Menampilkan konten sebuah materi dan menandainya sebagai selesai.
+     */
+    public function showMaterial(Track $track, Material $material): View
+    {
+        // Pastikan pengguna sudah terdaftar di track ini sebelum akses materi
+        if (!Auth::user()->enrolledTracks()->where('track_id', $track->id)->exists()) {
+            // Jika belum, kembalikan ke halaman detail track dengan pesan error
+            return redirect()->route('learn.track.show', $track)->with('error', 'Anda harus mengambil jalur belajar ini terlebih dahulu.');
+        }
+
+        // Tandai materi ini sebagai selesai untuk pengguna yang sedang login
+        Auth::user()->completedMaterials()->syncWithoutDetaching($material->id);
+
+        return view('user.learn.material', compact('track', 'material'));
     }
 }

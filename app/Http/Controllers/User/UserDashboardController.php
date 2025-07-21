@@ -9,15 +9,26 @@ use Illuminate\View\View;
 
 class UserDashboardController extends Controller
 {
-    /**
-     * Menampilkan dashboard pribadi pengguna.
-     * Hanya menampilkan track yang sudah diambil (enrolled).
-     */
     public function index(): View
     {
         $user = Auth::user();
-        // Ambil semua track yang sudah diikuti oleh pengguna
         $enrolledTracks = $user->enrolledTracks()->withCount('materials')->get();
+
+        // [DIUBAH] Iterasi untuk menghitung progres setiap track
+        foreach ($enrolledTracks as $track) {
+            // Hitung materi yang selesai oleh user di track ini
+            $completedCount = $user->completedMaterials()
+                                    ->where('track_id', $track->id)
+                                    ->count();
+            
+            // Hitung total materi di track ini
+            $totalMaterials = $track->materials_count;
+
+            // Hitung persentase dan tambahkan sebagai properti baru
+            $track->progressPercentage = ($totalMaterials > 0) 
+                                        ? ($completedCount / $totalMaterials) * 100 
+                                        : 0;
+        }
 
         return view('user.dashboard', compact('enrolledTracks'));
     }
