@@ -9,39 +9,37 @@ class Comment extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'user_id',
-        'material_id',
-        'parent_id',
-        'body',
-    ];
+    protected $guarded = ['id'];
 
-    /**
-     * Mendapatkan pengguna (user) yang memiliki komentar ini.
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Mendapatkan materi (material) yang memiliki komentar ini.
-     */
     public function material()
     {
         return $this->belongsTo(Material::class);
     }
 
-    /**
-     * Mendapatkan semua balasan dari sebuah komentar.
-     */
+    // Relasi ke dirinya sendiri untuk balasan
     public function replies()
     {
         return $this->hasMany(Comment::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id');
+    }
+
+    // Relasi ke tabel pivot untuk voting
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'comment_likes');
+    }
+
+    public function getLikesCountAttribute(): int
+    {
+        return $this->likes()->count();
     }
 }

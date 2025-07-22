@@ -47,8 +47,8 @@ class DashboardController extends Controller
             'totalTracks',
             'totalMaterials',
             'totalQuizzes',
-            'newUsersThisWeek', // Variabel yang dibutuhkan view
-            'latestTracks',     // Variabel yang dibutuhkan view
+            'newUsersThisWeek', 
+            'latestTracks',     
             'chartLabels',
             'chartData'
         ));

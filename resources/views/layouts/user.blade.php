@@ -11,60 +11,351 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f0f2f5;
-    }
-    .navbar-container {
-        position: sticky;
-        top: 1rem;
-        z-index: 1030;
-    }
-    .navbar-custom {
-        background-color: #317a75;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+        }
 
-    /* Mengatur font link navbar agar lebih tipis */
-    .navbar-custom .nav-link {
-        font-weight: 400; /* 400 untuk ketebalan normal */
-        font-size: 0.95rem; /* Sedikit lebih kecil */
-        color: rgba(255, 255, 255, 0.85); /* Sedikit redup agar tidak terlalu mencolok */
-    }
-    .navbar-custom .nav-link:hover {
-        color: #ffffff;
-    }
+        .navbar-container {
+            position: sticky;
+            top: 1rem;
+            z-index: 1030;
+        }
 
-    /* Mengembalikan garis bawah sederhana untuk link aktif */
-    .navbar-custom .nav-link.active {
-        font-weight: 500; /* Sedikit lebih tebal saat aktif */
-        color: #ffffff;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
+        .navbar-custom {
+            background-color: #317a75;
+        }
 
-    /* Menyesuaikan gaya tombol agar sesuai contoh */
-    .btn-sign-in {
-        border: 1px solid rgba(255, 255, 255, 0.8) !important;
-        color: rgba(255, 255, 255, 0.8) !important;
-        font-weight: 500;
-        padding: 0.4rem 1.2rem;
-    }
-    .btn-sign-in:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #ffffff !important;
-        border-color: #ffffff !important;
-    }
+        /* Mengatur font link navbar agar lebih tipis */
+        .navbar-custom .nav-link {
+            font-weight: 400;
+            /* 400 untuk ketebalan normal */
+            font-size: 0.95rem;
+            /* Sedikit lebih kecil */
+            color: rgba(255, 255, 255, 0.85);
+            /* Sedikit redup agar tidak terlalu mencolok */
+        }
 
-    .btn-sign-up {
-        background-color: #ffffff !important;
-        color: #317a75 !important;
-        font-weight: 500;
-        padding: 0.4rem 1.2rem;
+        .navbar-custom .nav-link:hover {
+            color: #ffffff;
+        }
+
+        /* Mengembalikan garis bawah sederhana untuk link aktif */
+        .navbar-custom .nav-link.active {
+            font-weight: 500;
+            /* Sedikit lebih tebal saat aktif */
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Menyesuaikan gaya tombol agar sesuai contoh */
+        .btn-sign-in {
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            padding: 0.4rem 1.2rem;
+        }
+
+        .btn-sign-in:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+        .btn-sign-up {
+            background-color: #ffffff !important;
+            color: #317a75 !important;
+            font-weight: 500;
+            padding: 0.4rem 1.2rem;
+        }
+
+        .btn-sign-up:hover {
+            opacity: 0.9;
+        }
+
+        /* Reddit-style Comment Styles */
+.comment-item {
+    margin-bottom: 0;
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comment-wrapper {
+    display: flex;
+    padding: 12px 16px;
+    position: relative;
+}
+
+/* Left side - Avatar and thread line */
+.comment-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12px;
+    min-width: 32px;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.thread-line {
+    width: 2px;
+    background-color: #e9ecef;
+    flex-grow: 1;
+    margin-top: 8px;
+    min-height: 20px;
+}
+
+/* Right side - Content */
+.comment-right {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Comment header */
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: #878a8c;
+}
+
+.comment-username {
+    font-weight: 600;
+    color: #1c1c1c;
+    font-size: 12px;
+}
+
+.comment-separator {
+    margin: 0 4px;
+    color: #878a8c;
+}
+
+.comment-time {
+    color: #878a8c;
+}
+
+.comment-reply-to {
+    color: #878a8c;
+}
+
+.reply-link {
+    color: #0079d3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.reply-link:hover {
+    text-decoration: underline;
+    color: #0079d3;
+}
+
+/* Comment body */
+.comment-body {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #1c1c1c;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+
+/* Comment actions */
+.comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #878a8c;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    transition: background-color 0.1s ease;
+}
+
+.action-btn:hover {
+    background-color: #f8f9fa;
+    color: #1c1c1c;
+}
+
+.action-btn i {
+    font-size: 12px;
+}
+
+.upvote-btn:hover {
+    color: #ff4500;
+}
+
+.downvote-btn:hover {
+    color: #7193ff;
+}
+
+.reply-btn:hover {
+    color: #878a8c;
+}
+
+.vote-count {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* Reply form styles */
+.reply-form-container {
+    margin-top: 8px;
+    padding-left: 0;
+}
+
+.reply-form {
+    background-color: #fafafa;
+    border: 1px solid #edeff1;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.reply-input-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.reply-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.reply-textarea {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+.reply-textarea:focus {
+    outline: none;
+    border-color: #0079d3;
+    box-shadow: 0 0 0 1px #0079d3;
+}
+
+.reply-textarea::placeholder {
+    color: #878a8c;
+}
+
+.reply-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.btn-cancel,
+.btn-submit {
+    padding: 4px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid;
+    transition: all 0.1s ease;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: #0079d3;
+    border-color: #0079d3;
+}
+
+.btn-cancel:hover {
+    background-color: #0079d3;
+    color: white;
+}
+
+.btn-submit {
+    background-color: #0079d3;
+    color: white;
+    border-color: #0079d3;
+}
+
+.btn-submit:hover {
+    background-color: #0060a8;
+    border-color: #0060a8;
+}
+
+/* Replies container */
+.replies-container {
+    margin-top: 8px;
+}
+
+.show-more-replies {
+    background: none;
+    border: none;
+    color: #0079d3;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.show-more-replies:hover {
+    text-decoration: underline;
+}
+
+/* Nested comment styling */
+.comment-reply {
+    border-left: none;
+}
+
+.comment-reply .comment-wrapper {
+    padding-left: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .comment-wrapper {
+        padding: 8px 12px;
     }
-    .btn-sign-up:hover {
-        opacity: 0.9;
+    
+    .comment-actions {
+        flex-wrap: wrap;
     }
-</style>
+    
+    .action-btn {
+        font-size: 11px;
+        padding: 3px 5px;
+    }
+    
+    .reply-input-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .reply-avatar {
+        align-self: flex-start;
+    }
+}
+    </style>
     @stack('styles')
 </head>
 

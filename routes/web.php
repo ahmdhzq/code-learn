@@ -10,10 +10,13 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\TrackController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\CommentLikeController;
+use App\Http\Controllers\User\CommentVoteController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\LeaderboardController;
 use App\Http\Controllers\User\LearningController;
+use App\Http\Controllers\User\UserCommentController;
 use App\Http\Controllers\User\UserDashboardController;
 
 /*
@@ -35,6 +38,8 @@ Route::middleware('auth')->group(function () {
     })->name('profile.show');
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::post('/comments', [UserCommentController::class, 'store'])->name('comments.store');
+     Route::post('/comments/{comment}/like', [CommentLikeController::class, 'toggle'])->name('comments.like');
 });
 
 
@@ -55,6 +60,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('quizzes.questions', QuestionController::class)->except(['index', 'show'])->shallow();
     Route::resource('comments', CommentController::class)->only(['index', 'destroy']);
     Route::post('/materials', [MaterialController::class, 'storeGlobal'])->name('materials.store_global');
+    
 });
 
 /*
@@ -68,6 +74,8 @@ Route::middleware(['auth', 'verified'])->prefix('learn')->name('learn.')->group(
     Route::get('/track/{track}', [LearningController::class, 'showTrack'])->name('track.show');
     Route::post('/track/{track}/enroll', [LearningController::class, 'enroll'])->name('track.enroll');
     Route::get('/track/{track}/material/{material}', [LearningController::class, 'showMaterial'])->name('material.show');
+    
+    
 });
 
 // Memuat rute autentikasi (login, register, dll.) dari file terpisah

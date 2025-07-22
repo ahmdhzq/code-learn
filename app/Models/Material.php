@@ -33,8 +33,9 @@ class Material extends Model
     }
 
     // Relasi: Materi memiliki banyak Komentar
-    public function comments(): HasMany
+    public function comments()
     {
-        return $this->hasMany(Comment::class);
+        // Ambil hanya komentar utama (bukan balasan)
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 }

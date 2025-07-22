@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse; // <-- Tambahkan ini
+use Illuminate\Http\RedirectResponse; 
 
 class UserController extends Controller
 {

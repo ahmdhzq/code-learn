@@ -10,45 +10,65 @@ use App\Models\Comment;
 
 class CommentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Ambil semua user biasa dan semua materi yang ada
+        // Ambil semua user biasa
         $users = User::where('role', 'user')->get();
-        $materials = Material::all();
 
-        // Pastikan ada user dan materi sebelum membuat komentar
-        if ($users->isEmpty() || $materials->isEmpty()) {
-            $this->command->info('Tidak dapat membuat komentar karena tidak ada user atau materi.');
+        // Pastikan ada user sebelum melanjutkan
+        if ($users->isEmpty()) {
+            $this->command->info('Tidak ada user, seeding komentar dibatalkan.');
             return;
         }
 
-        // Buat 25 komentar utama (induk)
-        for ($i = 0; $i < 25; $i++) {
+        // =================================================================
+        // Komentar untuk Materi "Pengenalan Python & Instalasi"
+        // =================================================================
+        $materiPythonInstall = Material::where('title', 'Pengenalan Python & Instalasi')->first();
+        if ($materiPythonInstall) {
+            $comment1 = Comment::create([
+                'user_id' => $users->random()->id,
+                'material_id' => $materiPythonInstall->id,
+                'body' => 'Terima kasih banyak! Akhirnya bisa install Python di Windows 11 setelah mengikuti video ini.',
+            ]);
+
             Comment::create([
                 'user_id' => $users->random()->id,
-                'material_id' => $materials->random()->id,
-                'parent_id' => null, // Ini adalah komentar induk
-                'body' => fake()->paragraph(2), // Menggunakan helper fake() untuk teks acak
+                'material_id' => $materiPythonInstall->id,
+                'parent_id' => $comment1->id,
+                'body' => 'Sama-sama kak! Saya juga berhasil. Penjelasannya mudah diikuti.',
             ]);
         }
 
-        // Ambil beberapa komentar yang sudah ada untuk dijadikan induk balasan
-        $parentComments = Comment::inRandomOrder()->take(10)->get();
+        // =================================================================
+        // Komentar untuk Materi "Pengenalan HTML untuk Pemula"
+        // =================================================================
+        $materiHtmlIntro = Material::where('title', 'Pengenalan HTML untuk Pemula')->first();
+        if ($materiHtmlIntro) {
+            Comment::create([
+                'user_id' => $users->random()->id,
+                'material_id' => $materiHtmlIntro->id,
+                'body' => 'Baru tahu kalau HTML itu bukan bahasa pemrograman. Terima kasih pencerahannya!',
+            ]);
+        }
+        
+        // =================================================================
+        // Komentar untuk Materi "Routing Dasar" di track Laravel
+        // =================================================================
+        $materiLaravelRouting = Material::where('title', 'Routing Dasar')->first();
+        if($materiLaravelRouting){
+            $comment_laravel_1 = Comment::create([
+                'user_id' => $users->random()->id,
+                'material_id' => $materiLaravelRouting->id,
+                'body' => 'Penjelasan soal routes/web.php sangat membantu!'
+            ]);
 
-        foreach ($parentComments as $parent) {
-            // Buat 1 sampai 3 balasan untuk setiap komentar induk
-            $replyCount = rand(1, 3);
-            for ($j = 0; $j < $replyCount; $j++) {
-                Comment::create([
-                    'user_id' => $users->random()->id,
-                    'material_id' => $parent->material_id, // Balasan harus di materi yang sama
-                    'parent_id' => $parent->id, // Menandakan ini adalah balasan
-                    'body' => fake()->sentence(10),
-                ]);
-            }
+            Comment::create([
+                'user_id' => $users->random()->id,
+                'material_id' => $materiLaravelRouting->id,
+                'parent_id' => $comment_laravel_1->id,
+                'body' => 'Betul, saya sering bingung bedanya dengan routes/api.php, sekarang jadi paham.'
+            ]);
         }
     }
 }

@@ -73,4 +73,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Track::class);
     }
+
+    // Relasi untuk mengambil comment yang telah diberikan suara oleh pengguna
+    public function commentLikes()
+    {
+        return $this->belongsToMany(Comment::class, 'comment_likes');
+    }
 }
