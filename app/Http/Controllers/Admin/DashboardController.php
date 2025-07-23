@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
         // Menghitung pengguna baru dalam 7 hari terakhir
         $newUsersThisWeek = User::where('created_at', '>=', Carbon::now()->subDays(7))->count();
-        
+
         // Mengambil 5 learning path terbaru untuk daftar aktivitas
         $latestTracks = Track::latest()->take(5)->get();
 
@@ -34,10 +34,10 @@ class DashboardController extends Controller
         for ($i = 5; $i >= 0; $i--) {
             $month = Carbon::now()->subMonths($i);
             $chartLabels[] = $month->translatedFormat('M');
-            
+
             $count = Material::whereYear('created_at', $month->year)
-                             ->whereMonth('created_at', $month->month)
-                             ->count();
+                ->whereMonth('created_at', $month->month)
+                ->count();
             $chartData[] = $count;
         }
 
@@ -47,8 +47,8 @@ class DashboardController extends Controller
             'totalTracks',
             'totalMaterials',
             'totalQuizzes',
-            'newUsersThisWeek', 
-            'latestTracks',     
+            'newUsersThisWeek',
+            'latestTracks',
             'chartLabels',
             'chartData'
         ));
