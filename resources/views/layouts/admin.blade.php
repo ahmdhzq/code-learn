@@ -2,11 +2,6 @@
 
 @section('title', 'Admin Panel - CodeLearn')
 
-{{-- Memuat CSS kustom kita --}}
-@push('styles')
-    <link href="{{ asset('css/modern-admin.css') }}" rel="stylesheet">
-@endpush
-
 @section('content')
 <div class="admin-layout">
     
