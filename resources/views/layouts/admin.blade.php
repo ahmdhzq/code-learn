@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="admin-layout">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     {{-- Memanggil Sidebar --}}
     @include('partials.admin-sidebar')
