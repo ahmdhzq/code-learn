@@ -25,15 +25,7 @@ use App\Http\Controllers\User\UserDashboardController;
 */
 
 // Rute untuk halaman utama apabila user belum login atau register
-// Route::get('/', [HomeController::class, 'index'])->name('welcome');
-
-Route::get('/', function () {
-    return 'Tes Final Berhasil!';
-});
-// Health Check Route
-Route::get('/up', function () {
-    return response('OK', 200);
-});
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 // Rute untuk manajemen profil pengguna (bawaan Breeze)
 Route::middleware('auth')->group(function () {
