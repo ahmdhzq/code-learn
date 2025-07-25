@@ -25,7 +25,7 @@
 
         <div class="row g-4 g-lg-5">
 
-            <div class="col-lg-8 border border-1 rounded-4 py-4">
+            <div class="{{ auth()->user()->can('upload-materi') ? 'col-lg-8' : 'col-12' }} border border-1 rounded-4 py-4">
                 <h4 class="fw-bold mb-3">Jalur Belajar yang Sedang Diikuti</h4>
 
                 <div class="row row-cols-1 row-cols-md-1 row-cols-xl-2 g-4">
@@ -67,25 +67,27 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
-                <div class="card border border-1 rounded-4">
-                    <div class="card-body p-4">
-                        <h5 class="fw-bold mb-3">Kontribusi Saya</h5>
-                        <div class="d-grid gap-2">
-                            <a href="{{ route('materials.history') }}" class="btn btn-outline-secondary fw-semibold text-start">
-                                <i class="fas fa-history fa-fw me-2"></i>Riwayat Pengajuan
-                            </a>
-                            
-                            @can('upload-materi')
+            @can('upload-materi')
+                <div class="col-lg-4">
+                    <div class="card border border-1 rounded-4 shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3">Kontribusi Saya</h5>
+                            <div class="d-grid gap-2">
+                                <a href="{{ route('materials.history') }}"
+                                    class="btn btn-outline-secondary fw-semibold text-start">
+                                    <i class="fas fa-history fa-fw me-2"></i>Riwayat Pengajuan
+                                </a>
+
                                 <a href="{{ route('materials.create') }}" class="btn btn-primary fw-semibold text-start">
                                     <i class="fas fa-plus-circle fa-fw me-2"></i>Ajukan Materi Baru
                                 </a>
-                            @endcan
+                            </div>
+                            <p class="text-muted small mt-3 mb-0">Lihat riwayat atau ajukan materi baru jika Anda termasuk
+                                kontributor teratas.</p>
                         </div>
-                        <p class="text-muted small mt-3 mb-0">Lihat riwayat atau ajukan materi baru jika Anda termasuk kontributor teratas.</p>
                     </div>
                 </div>
-            </div>
+            @endcan
 
         </div>
     </div>

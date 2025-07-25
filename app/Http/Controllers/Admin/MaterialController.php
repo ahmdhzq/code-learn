@@ -17,10 +17,10 @@ class MaterialController extends Controller
      */
     public function all(): View
     {
-        // Mengambil semua tracks dan menghitung jumlah materi terkait secara efisien
-        $tracks = Track::withCount('materials')->latest()->get();
+        $tracks = Track::withCount(['materials' => function ($query) {
+            $query->where('status', 'approved');
+        }])->latest()->get();
 
-        // Mengirim data tracks ke view
         return view('admin.materials.all', compact('tracks'));
     }
 
@@ -29,8 +29,11 @@ class MaterialController extends Controller
      */
     public function index(Track $track): View
     {
-        // Mengambil materi dan juga data kuis terkait
-        $materials = $track->materials()->with('quiz')->orderBy('order')->get();
+        $materials = $track->materials()
+            ->where('status', 'approved')
+            ->with('quiz')
+            ->orderBy('order')
+            ->get();
 
         return view('admin.materials.index', compact('track', 'materials'));
     }
