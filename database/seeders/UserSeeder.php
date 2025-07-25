@@ -9,47 +9,60 @@ use App\Models\User;
 
 class UserSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         // Membuat Admin
         User::updateOrCreate(
-            ['email' => 'admin@codelearn.com'], 
-            [                                    
+            ['email' => 'admin@codelearn.com'],
+            [
                 'name' => 'Admin User',
-                'password' => bcrypt('password'), // Ganti dengan password Anda
+                'password' => Hash::make('password'),
                 'role' => 'admin',
             ]
         );
 
         // Membuat 5 User biasa dengan password 'password'
-        User::create([
-            'name' => 'Budi Santoso',
-            'email' => 'budi@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'budi@example.com'],
+            [
+                'name' => 'Budi Santoso',
+                'password' => Hash::make('password'),
+            ]
+        );
 
-        User::create([
-            'name' => 'Siti Aminah',
-            'email' => 'siti@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'siti@example.com'],
+            [
+                'name' => 'Siti Aminah',
+                'password' => Hash::make('password'),
+            ]
+        );
 
-        User::create([
-            'name' => 'Eko Prasetyo',
-            'email' => 'eko@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'eko@example.com'],
+            [
+                'name' => 'Eko Prasetyo',
+                'password' => Hash::make('password'),
+            ]
+        );
 
-        User::create([
-            'name' => 'Dewi Lestari',
-            'email' => 'dewi@example.com',
-            'password' => Hash::make('password'),
-        ]);
-
-        User::create([
-            'name' => 'testing',
-            'email' => 'testing@gmail.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'dewi@example.com'],
+            [
+                'name' => 'Dewi Lestari',
+                'password' => Hash::make('password'),
+            ]
+        );
+        
+        User::updateOrCreate(
+            ['email' => 'testing@gmail.com'],
+            [
+                'name' => 'testing',
+                'password' => Hash::make('password'),
+            ]
+        );
     }
 }
