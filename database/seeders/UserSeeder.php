@@ -12,12 +12,14 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Membuat Admin
-        User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@codelearn.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@codelearn.com'], 
+            [                                    
+                'name' => 'Admin User',
+                'password' => bcrypt('password'), // Ganti dengan password Anda
+                'role' => 'admin',
+            ]
+        );
 
         // Membuat 5 User biasa dengan password 'password'
         User::create([
@@ -43,7 +45,7 @@ class UserSeeder extends Seeder
             'email' => 'dewi@example.com',
             'password' => Hash::make('password'),
         ]);
-        
+
         User::create([
             'name' => 'testing',
             'email' => 'testing@gmail.com',
