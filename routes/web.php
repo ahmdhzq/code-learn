@@ -84,6 +84,7 @@ Route::middleware(['auth', 'verified'])->prefix('learn')->name('learn.')->group(
 Route::middleware(['auth', 'can:upload-materi'])->group(function () {
     Route::get('/submit-material', [MaterialSubmissionController::class, 'create'])->name('materials.create');
     Route::post('/submit-material', [MaterialSubmissionController::class, 'store'])->name('materials.store');
+    Route::get('/my-submissions', [MaterialSubmissionController::class, 'history'])->name('materials.history');
 });
 
 // Memuat rute autentikasi (login, register, dll.) dari file terpisah

@@ -17,7 +17,15 @@ class LearningController extends Controller
      */
     public function index(): View
     {
-        $allTracks = Track::withCount('materials')->latest()->get();
+        $allTracks = Track::with(['materials' => function ($query) {
+            $query->where('status', 'approved')->orderBy('order')->limit(3);
+        }])
+            ->withCount(['materials' => function ($query) {
+                $query->where('status', 'approved');
+            }])
+            ->latest()
+            ->get();
+
         $enrolledTrackIds = Auth::user()->enrolledTracks->pluck('id');
 
         return view('user.learn.index', compact('allTracks', 'enrolledTrackIds'));
@@ -28,7 +36,7 @@ class LearningController extends Controller
      */
     public function showTrack(Track $track): View
     {
-        $materials = $track->materials()->orderBy('order')->get();
+        $materials = $track->materials()->where('status', 'approved')->orderBy('order')->get();
         $completedMaterials = Auth::user()
             ->completedMaterials()
             ->whereIn('material_id', $materials->pluck('id'))

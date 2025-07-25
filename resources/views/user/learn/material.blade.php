@@ -2,6 +2,7 @@
 
 @section('title', $material->title)
 
+
 @section('content')
     <div class="bg-white py-4 shadow-sm">
         <div class="container">

@@ -1,11 +1,10 @@
-{{-- Wrapper untuk Navbar Mengambang --}}
-<div class="container navbar-container">
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm rounded-pill py-2">
+<div class="navbar-container fixed-top" style="background-color: #317a75">
+    <nav class="container navbar navbar-expand-lg navbar-dark py-3">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ auth()->check() ? route('learn.index') : '/' }}">
                 <div class="d-flex align-items-center justify-content-center bg-white rounded-circle me-2"
                     style="width: 40px; height: 40px;">
-                    <i class="fas fa-graduation-cap text-primary"></i>
+                    <i class="fas fa-graduation-cap" style="color:#317a75"></i>
                 </div>
                 <span class="fw-bold fs-5 text-white">CodeLearn</span>
             </a>
@@ -15,24 +14,29 @@
                     @auth
                         {{-- ================ MENU PENGGUNA LOGIN ================ --}}
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('learn.index') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('welcome') ? 'active border-bottom border-light border-2' : 'text-white-50' }}"
+                                href="{{ route('welcome') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('learn.index', 'learn.material.show', 'learn.track.show') ? 'active border-bottom border-light border-2' : 'text-white-50' }}"
                                 href="{{ route('learn.index') }}">Practice</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('leaderboard') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('leaderboard') ? 'active border-bottom border-light border-2' : 'text-white-50' }}"
                                 href="{{ route('leaderboard') }}">Compete</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('dashboard', 'materials.history', 'materials.create') ? 'active border-bottom border-light border-2' : 'text-white-50' }}"
                                 href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                     @else
                         {{-- ================ MENU UNTUK TAMU ================ --}}
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+                            <a class="nav-link {{ request()->routeIs('welcome') ? 'active border-bottom border-light border-2' : 'text-white-50' }}"
+                                href="{{ route('welcome') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/#tracks">Jalur Belajar</a>
+                            <a class="nav-link text-white-50" href="/#tracks">Jalur Belajar</a>
                         </li>
                     @endauth
                 </ul>
@@ -40,13 +44,11 @@
 
             <div class="d-none d-lg-flex align-items-center ms-auto">
                 @guest
-                    {{-- [PENTING] Tombol untuk Tamu (Belum Login) --}}
-                    <a href="{{ route('login') }}" class="btn rounded-pill me-2 btn-sign-in">Login</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-light rounded-pill me-2">Login</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn rounded-pill btn-sign-up">Sign Up</a>
+                        <a href="{{ route('register') }}" class="btn btn-light rounded-pill">Sign Up</a>
                     @endif
                 @else
-                    {{-- Dropdown untuk Pengguna (Sudah Login) --}}
                     <div class="dropdown">
                         <button class="btn btn-outline-light rounded-pill dropdown-toggle d-flex align-items-center"
                             type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,6 +58,7 @@
                             @if (Auth::user()->role === 'admin')
                                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Panel Admin</a></li>
                             @endif
+                            <li><a class="dropdown-item" href="{{ route('materials.history') }}">Riwayat Pengajuan</a></li>
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profil Saya</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -63,7 +66,7 @@
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); this.closest('form').submit();">
                                         Log Out
                                     </a>
@@ -82,6 +85,7 @@
     </nav>
 </div>
 
+
 <div class="offcanvas offcanvas-start text-white w-75" tabindex="-1" id="mobileOffcanvas"
     aria-labelledby="mobileOffcanvasLabel" style="background-color: #317a75;">
     <div class="offcanvas-header border-bottom border-white-50">
@@ -93,6 +97,11 @@
         @auth
             {{-- Menu Mobile Pengguna Login --}}
             <ul class="navbar-nav flex-grow-1">
+                 {{-- [TAMBAHAN] Link Home untuk menu mobile --}}
+                 <li class="nav-item">
+                    <a class="nav-link fs-5 mb-2 {{ request()->routeIs('welcome') ? 'active' : '' }}"
+                        href="{{ route('welcome') }}">Home</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 mb-2 {{ request()->routeIs('learn.index') ? 'active' : '' }}"
                         href="{{ route('learn.index') }}">Practice</a>
@@ -102,7 +111,7 @@
                         href="{{ route('leaderboard') }}">Compete</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                         href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
             </ul>

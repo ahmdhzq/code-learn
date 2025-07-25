@@ -51,7 +51,7 @@ class MaterialController extends Controller
     public function storeGlobal(Request $request): RedirectResponse
     {
         $request->validate([
-            'track_id' => 'required|exists:tracks,id', // Validasi track_id
+            'track_id' => 'required|exists:tracks,id',
             'title' => 'required|string|max:255',
             'type' => 'required|in:article,video,pdf',
             'content_article' => 'required_if:type,article|nullable|string',
