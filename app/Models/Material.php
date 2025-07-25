@@ -4,30 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Material extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'track_id',
-        'title',
-        'content',
-        'type',
-        'order',
-    ];
+    /**
+     * Mengizinkan semua kolom untuk diisi secara massal.
+     * Ini akan menyelesaikan masalah data yang tidak tersimpan.
+     */
+    protected $guarded = [];
 
     // Relasi: Materi ini milik satu Track
-    public function track(): BelongsTo
+    public function track()
     {
         return $this->belongsTo(Track::class);
     }
 
     // Relasi: Materi memiliki satu Kuis
-    public function quiz(): HasOne
+    public function quiz()
     {
         return $this->hasOne(Quiz::class);
     }
@@ -35,7 +30,12 @@ class Material extends Model
     // Relasi: Materi memiliki banyak Komentar
     public function comments()
     {
-        // Ambil hanya komentar utama (bukan balasan)
         return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+    
+    // Relasi: Materi dimiliki oleh satu User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

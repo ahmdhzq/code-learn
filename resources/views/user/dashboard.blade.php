@@ -54,6 +54,11 @@
                     <a href="{{ route('learn.index') }}" class="btn btn-primary btn-lg mt-3">Mulai Jelajahi</a>
                 </div>
             @endforelse
+            @can('upload-materi')
+                <a href="{{ route('materials.create') }}" class="btn btn-primary">
+                    Upload Materi Baru
+                </a>
+            @endcan
         </div>
     </div>
 @endsection

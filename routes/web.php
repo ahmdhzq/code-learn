@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ApprovalController;
 use App\Http\Controllers\Admin\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\TrackController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\MaterialSubmissionController;
 use App\Http\Controllers\User\CommentLikeController;
 use App\Http\Controllers\User\CommentVoteController;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +61,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('quizzes.questions', QuestionController::class)->except(['index', 'show'])->shallow();
     Route::resource('comments', CommentController::class)->only(['index', 'destroy']);
     Route::post('/materials', [MaterialController::class, 'storeGlobal'])->name('materials.store_global');
+    Route::get('/approvals', [ApprovalController::class, 'index'])->name('approvals.index');
+
+    // Route untuk approve dan reject
+    Route::patch('/approvals/{material}/approve', [ApprovalController::class, 'approve'])->name('approvals.approve');
+    Route::patch('/approvals/{material}/reject', [ApprovalController::class, 'reject'])->name('approvals.reject');
 });
 
 /*
@@ -72,6 +79,11 @@ Route::middleware(['auth', 'verified'])->prefix('learn')->name('learn.')->group(
     Route::get('/track/{track}', [LearningController::class, 'showTrack'])->name('track.show');
     Route::post('/track/{track}/enroll', [LearningController::class, 'enroll'])->name('track.enroll');
     Route::get('/track/{track}/material/{material}', [LearningController::class, 'showMaterial'])->name('material.show');
+});
+
+Route::middleware(['auth', 'can:upload-materi'])->group(function () {
+    Route::get('/submit-material', [MaterialSubmissionController::class, 'create'])->name('materials.create');
+    Route::post('/submit-material', [MaterialSubmissionController::class, 'store'])->name('materials.store');
 });
 
 // Memuat rute autentikasi (login, register, dll.) dari file terpisah

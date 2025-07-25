@@ -47,6 +47,13 @@
                 <span>Manajemen Pengguna</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('admin.approvals.index') }}"
+                class="nav-link {{ request()->routeIs('admin.approvals.*') ? 'active' : '' }}">
+                <i class="fas fa-tasks fa-fw"></i>
+                <span>Manajemen Persetujuan</span>
+            </a>
+        </li>
     </ul>
 
     <div class="mt-auto">

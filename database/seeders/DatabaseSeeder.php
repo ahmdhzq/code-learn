@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TrackSeeder::class,
             CommentSeeder::class,
+            PointsSeeder::class,
         ]);
     }
 }
