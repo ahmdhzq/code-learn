@@ -62,8 +62,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('comments', CommentController::class)->only(['index', 'destroy']);
     Route::post('/materials', [MaterialController::class, 'storeGlobal'])->name('materials.store_global');
     Route::get('/approvals', [ApprovalController::class, 'index'])->name('approvals.index');
-
-    // Route untuk approve dan reject
     Route::patch('/approvals/{material}/approve', [ApprovalController::class, 'approve'])->name('approvals.approve');
     Route::patch('/approvals/{material}/reject', [ApprovalController::class, 'reject'])->name('approvals.reject');
 });

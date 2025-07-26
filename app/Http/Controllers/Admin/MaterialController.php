@@ -73,6 +73,8 @@ class MaterialController extends Controller
             $data['content'] = $path;
         }
 
+        $data['status'] = 'approved';
+
         Material::create($data);
 
         return redirect()->route('admin.materials.all')
@@ -111,6 +113,8 @@ class MaterialController extends Controller
             $path = $request->file('content_pdf')->store('pdfs', 'public');
             $data['content'] = $path;
         }
+
+        $data['status'] = 'approved';
 
         Material::create($data);
 
