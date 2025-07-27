@@ -53,8 +53,8 @@ class QuestionController extends Controller
             }
         });
 
-        return redirect()->route('admin.quizzes.show', $quiz)
-                         ->with('success', 'Pertanyaan baru berhasil ditambahkan.');
+        return redirect()->route('admin.quizzes.show', $quiz->material)
+                 ->with('success', 'Pertanyaan baru berhasil ditambahkan.');
     }
 
     /**
@@ -95,9 +95,8 @@ class QuestionController extends Controller
             }
         });
 
-        // Kembali ke halaman show quiz menggunakan relasi
-        return redirect()->route('admin.quizzes.show', $question->quiz)
-                         ->with('success', 'Pertanyaan berhasil diperbarui.');
+        return redirect()->route('admin.quizzes.show', $question->quiz->material)
+                 ->with('success', 'Pertanyaan berhasil diperbarui.');
     }
 
     /**
@@ -110,7 +109,7 @@ class QuestionController extends Controller
         
         $question->delete();
 
-        return redirect()->route('admin.quizzes.show', $quiz)
-                         ->with('success', 'Pertanyaan berhasil dihapus.');
+        return redirect()->route('admin.quizzes.show', $quiz->material)
+                 ->with('success', 'Pertanyaan berhasil dihapus.');
     }
 }
