@@ -93,7 +93,7 @@
         $(document).ready(function() {
             $('#tracks-table').DataTable({
                 order: [
-                    [0, 'desc']
+                    [0, 'asc']
                 ],
                 pageLength: 10,
                 responsive: true,

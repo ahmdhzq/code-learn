@@ -1,5 +1,8 @@
 <nav class="admin-navbar">
     <div class="d-flex justify-content-between align-items-center w-100">
+         <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
         <h4 class="fw-bold mb-0">@yield('page-title', 'Dashboard')</h4>
 
         <div class="d-flex align-items-center">

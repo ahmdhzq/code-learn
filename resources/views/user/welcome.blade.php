@@ -19,18 +19,21 @@
                         of home.
                     </h1>
                     <p class="fs-5 text-muted mb-5 pe-lg-4">
-                        Jelajahi berbagai jalur belajar terstruktur yang dirancang untuk membawa Anda dari pemula menjadi seorang profesional dalam dunia programming.
+                        Jelajahi berbagai jalur belajar terstruktur yang dirancang untuk membawa Anda dari pemula menjadi
+                        seorang profesional dalam dunia programming.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         @auth
-                            <a href="{{ route('learn.index') }}" class="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-semibold">
+                            <a href="{{ route('learn.index') }}"
+                                class="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-semibold">
                                 <i class="fas fa-play me-2"></i>Mulai Belajar
                             </a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-semibold">
                                 <i class="fas fa-play me-2"></i>Mulai Belajar
                             </a>
-                            <a href="{{ route('register') }}" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-pill fw-semibold">
+                            <a href="{{ route('register') }}"
+                                class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-pill fw-semibold">
                                 <i class="fas fa-user-plus me-2"></i>Daftar Gratis
                             </a>
                         @endauth
@@ -39,9 +42,8 @@
                 <div class="col-lg-6">
                     <div class="position-relative">
                         <div class="bg-light rounded-4 p-4 shadow-lg">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                 alt="Learning from home" 
-                                 class="img-fluid rounded-3 w-100">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Learning from home" class="img-fluid rounded-3 w-100">
                         </div>
                     </div>
                 </div>
@@ -74,11 +76,12 @@
                 @forelse ($tracks->take(4) as $index => $track)
                     <div class="col">
                         <div class="card h-100 border-0 shadow-sm rounded-4 position-relative overflow-hidden hover-lift">
-                            
+
                             <div class="card-body p-4 d-flex flex-column">
                                 <h5 class="card-title fw-bold mb-3">{{ $track->name }}</h5>
-                                <p class="card-text text-muted small flex-grow-1 mb-4">{{ Str::limit($track->description, 100) }}</p>
-                                
+                                <p class="card-text text-muted small flex-grow-1 mb-4">
+                                    {{ Str::limit($track->description, 100) }}</p>
+
                                 <div class="mt-auto">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <span class="text-muted small">
@@ -88,9 +91,10 @@
                                             <i class="fas fa-clock me-1"></i>{{ rand(4, 12) }} Minggu
                                         </span>
                                     </div>
-                                    
+
                                     @auth
-                                        <a href="{{ route('learn.track.show', $track) }}" class="btn btn-primary w-100 rounded-pill fw-semibold">
+                                        <a href="{{ route('learn.track.show', $track) }}"
+                                            class="btn btn-primary w-100 rounded-pill fw-semibold">
                                             Mulai Belajar
                                         </a>
                                     @else
@@ -121,22 +125,23 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="position-relative">
                         <div class="bg-light rounded-4 p-4">
-                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                                 alt="Success in learning" 
-                                 class="img-fluid rounded-3 w-100">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Success in learning" class="img-fluid rounded-3 w-100">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <h2 class="display-5 fw-bold mb-4">Educate for <span class="text-primary">Success</span></h2>
                     <p class="text-muted fs-5 mb-5">
-                        Dengan metode pembelajaran yang terbukti efektif dan mentor berpengalaman, kami memastikan setiap siswa mencapai kesuksesan dalam karir programming mereka.
+                        Dengan metode pembelajaran yang terbukti efektif dan mentor berpengalaman, kami memastikan setiap
+                        siswa mencapai kesuksesan dalam karir programming mereka.
                     </p>
-                    
+
                     <div class="row g-4">
                         <div class="col-6">
                             <div class="text-center">
-                                <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                    style="width: 60px; height: 60px;">
                                     <i class="fas fa-trophy text-white fs-4"></i>
                                 </div>
                                 <h5 class="fw-bold">Expert Mentors</h5>
@@ -145,7 +150,8 @@
                         </div>
                         <div class="col-6">
                             <div class="text-center">
-                                <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                    style="width: 60px; height: 60px;">
                                     <i class="fas fa-certificate text-success fs-4"></i>
                                 </div>
                                 <h5 class="fw-bold">Certification</h5>
@@ -154,7 +160,8 @@
                         </div>
                         <div class="col-6">
                             <div class="text-center">
-                                <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                    style="width: 60px; height: 60px;">
                                     <i class="fas fa-rocket text-warning fs-4"></i>
                                 </div>
                                 <h5 class="fw-bold">Career Support</h5>
@@ -163,7 +170,8 @@
                         </div>
                         <div class="col-6">
                             <div class="text-center">
-                                <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                    style="width: 60px; height: 60px;">
                                     <i class="fas fa-users text-info fs-4"></i>
                                 </div>
                                 <h5 class="fw-bold">Community</h5>
@@ -190,9 +198,9 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <div class="bg-white rounded-4 p-4 mb-4 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                                 alt="Find your Course" 
-                                 class="img-fluid rounded-3 mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                alt="Find your Course" class="img-fluid rounded-3 mb-3"
+                                style="height: 200px; object-fit: cover; width: 100%;">
                         </div>
                         <h5 class="fw-bold mb-3">Find your Course</h5>
                         <p class="text-muted">Pilih jalur belajar yang sesuai dengan minat dan tujuan karir Anda</p>
@@ -201,9 +209,9 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <div class="bg-white rounded-4 p-4 mb-4 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                                 alt="Book & Pay" 
-                                 class="img-fluid rounded-3 mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                alt="Book & Pay" class="img-fluid rounded-3 mb-3"
+                                style="height: 200px; object-fit: cover; width: 100%;">
                         </div>
                         <h5 class="fw-bold mb-3">Book & Pay</h5>
                         <p class="text-muted">Daftar dan lakukan pembayaran dengan sistem yang aman dan mudah</p>
@@ -212,9 +220,9 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <div class="bg-white rounded-4 p-4 mb-4 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                                 alt="Get Certificate" 
-                                 class="img-fluid rounded-3 mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                alt="Get Certificate" class="img-fluid rounded-3 mb-3"
+                                style="height: 200px; object-fit: cover; width: 100%;">
                         </div>
                         <h5 class="fw-bold mb-3">Get Certificate</h5>
                         <p class="text-muted">Selesaikan kursus dan dapatkan sertifikat yang diakui industri</p>
@@ -237,97 +245,375 @@
                 </a>
             </div>
 
-            {{-- Student testimonials grid --}}
-            <div class="row g-3">
-                <div class="col-6 col-md-3 col-lg-2">
-                    <div class="bg-light rounded-3 p-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                             alt="Student" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h6 class="fw-bold small mb-1">Ahmad S.</h6>
-                        <p class="text-muted" style="font-size: 0.75rem;">Web Developer</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <div class="bg-light rounded-3 p-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                             alt="Student" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h6 class="fw-bold small mb-1">Sari D.</h6>
-                        <p class="text-muted" style="font-size: 0.75rem;">Mobile Dev</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <div class="bg-light rounded-3 p-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                             alt="Student" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h6 class="fw-bold small mb-1">Budi P.</h6>
-                        <p class="text-muted" style="font-size: 0.75rem;">Data Scientist</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <div class="bg-light rounded-3 p-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                             alt="Student" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h6 class="fw-bold small mb-1">Rina K.</h6>
-                        <p class="text-muted" style="font-size: 0.75rem;">UI/UX Designer</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <div class="bg-light rounded-3 p-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                             alt="Student" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h6 class="fw-bold small mb-1">Doni R.</h6>
-                        <p class="text-muted" style="font-size: 0.75rem;">DevOps Engineer</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <div class="bg-light rounded-3 p-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-                             alt="Student" class="rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h6 class="fw-bold small mb-1">Maya L.</h6>
-                        <p class="text-muted" style="font-size: 0.75rem;">Full Stack Dev</p>
+            {{-- Testimonials Section --}}
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10">
+                    <div class="row g-4">
+                        {{-- Main testimonial --}}
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow-sm h-100 rounded-4">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                            alt="Ahmad Susanto" class="rounded-circle me-3"
+                                            style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="fw-bold mb-1">Ahmad Susanto</h6>
+                                            <small class="text-muted">Full Stack Developer at Tech Corp</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3">
+                                        "CodeLearn memberikan pengalaman belajar yang luar biasa dengan mentor yang
+                                        berpengalaman
+                                        dan kurikulum yang selalu update dengan teknologi terbaru. Highly recommended!"
+                                    </p>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Secondary testimonial --}}
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow-sm h-100 rounded-4">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                            alt="Sari Dewi" class="rounded-circle me-3"
+                                            style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="fw-bold mb-1">Sari Dewi</h6>
+                                            <small class="text-muted">Mobile Developer at StartupXYZ</small>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3">
+                                        "Materi yang disajikan sangat praktis dan mudah dipahami. Dalam 6 bulan saya
+                                        berhasil
+                                        mendapatkan pekerjaan sebagai mobile developer. Terima kasih CodeLearn!"
+                                    </p>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center mt-5">
-                <p class="text-muted fst-italic">
-                    "CodeLearn memberikan pengalaman belajar yang luar biasa dengan mentor yang berpengalaman 
-                    dan kurikulum yang selalu update dengan teknologi terbaru. Highly recommended!"
-                </p>
-                <div class="text-warning">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+            {{-- Student avatars grid --}}
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-4 col-md-2">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                    alt="Student" class="rounded-circle shadow-sm"
+                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                <h6 class="fw-bold small mt-2 mb-1">Budi P.</h6>
+                                <p class="text-muted" style="font-size: 0.75rem;">Data Scientist</p>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                    alt="Student" class="rounded-circle shadow-sm"
+                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                <h6 class="fw-bold small mt-2 mb-1">Rina K.</h6>
+                                <p class="text-muted" style="font-size: 0.75rem;">UI/UX Designer</p>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                    alt="Student" class="rounded-circle shadow-sm"
+                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                <h6 class="fw-bold small mt-2 mb-1">Doni R.</h6>
+                                <p class="text-muted" style="font-size: 0.75rem;">DevOps Engineer</p>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                    alt="Student" class="rounded-circle shadow-sm"
+                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                <h6 class="fw-bold small mt-2 mb-1">Maya L.</h6>
+                                <p class="text-muted" style="font-size: 0.75rem;">Full Stack Dev</p>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                    alt="Student" class="rounded-circle shadow-sm"
+                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                <h6 class="fw-bold small mt-2 mb-1">Reza M.</h6>
+                                <p class="text-muted" style="font-size: 0.75rem;">Backend Dev</p>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                                    alt="Student" class="rounded-circle shadow-sm"
+                                    style="width: 80px; height: 80px; object-fit: cover;">
+                                <h6 class="fw-bold small mt-2 mb-1">Lisa A.</h6>
+                                <p class="text-muted" style="font-size: 0.75rem;">Frontend Dev</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- Newsletter Section --}}
+    <div class="py-5" style="background: linear-gradient(135deg, #317a75 0%, #2a6b66 100%);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="text-white">
+                        <h3 class="fw-bold mb-3">Stay Updated With New Courses & Offers</h3>
+                        <p class="mb-0 opacity-75">
+                            Dapatkan notifikasi untuk course terbaru, promo menarik, dan tips programming langsung ke email
+                            Anda.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-2">
+                        <div class="col-8">
+                            <input type="email" class="form-control form-control-lg rounded-pill"
+                                placeholder="Masukkan email Anda" required>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-light btn-lg w-100 rounded-pill fw-semibold">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                    <small class="text-white opacity-75 d-block mt-2">
+                        <i class="fas fa-lock me-1"></i>Email Anda aman bersama kami
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Footer --}}
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                {{-- Brand & Description --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <h4 class="fw-bold text-primary mb-3">
+                            <i class="fas fa-code me-2"></i>CodeLearn
+                        </h4>
+                        <p class="text-light opacity-75 mb-4">
+                            Platform pembelajaran programming terbaik di Indonesia. Bergabunglah dengan ribuan developer
+                            untuk mengembangkan skill dan karir Anda.
+                        </p>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="text-light opacity-75 fs-5 hover-opacity-100">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="text-light opacity-75 fs-5 hover-opacity-100">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-light opacity-75 fs-5 hover-opacity-100">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-light opacity-75 fs-5 hover-opacity-100">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-light opacity-75 fs-5 hover-opacity-100">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Quick Links --}}
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{{ route('welcome') }}"
+                                class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Beranda
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ route('learn.index') }}"
+                                class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Kursus
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ route('leaderboard') }}"
+                                class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Leaderboard
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Tentang Kami
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Kontak
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- Programs --}}
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Programs</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Web Development
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Mobile Development
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Data Science
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                UI/UX Design
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                DevOps
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- Support --}}
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Help Center
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                FAQ
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-light opacity-75 text-decoration-none hover-opacity-100">
+                                Syarat & Ketentuan
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- Contact Info --}}
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Get in Touch</h6>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-map-marker-alt text-primary me-2 mt-1"></i>
+                            <small class="text-light opacity-75">
+                                Jl. Sudirman No. 123<br>
+                                Jakarta Pusat, Indonesia
+                            </small>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-phone text-primary me-2"></i>
+                            <small class="text-light opacity-75">+62 812-3456-7890</small>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-envelope text-primary me-2"></i>
+                            <small class="text-light opacity-75">hello@codelearn.id</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 opacity-25">
+
+            {{-- Copyright --}}
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small class="text-light opacity-75">
+                        © {{ date('Y') }} CodeLearn. All rights reserved.
+                    </small>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <small class="text-light opacity-75">
+                        Made with <i class="fas fa-heart text-danger"></i> in Indonesia
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     {{-- Custom CSS --}}
     <style>
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .hover-lift:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
         }
+
+        .hover-opacity-100:hover {
+            opacity: 1 !important;
+        }
+
         .min-vh-75 {
             min-height: 75vh;
         }
+
         .btn-primary {
             background-color: #317a75;
             border-color: #317a75;
         }
+
         .btn-primary:hover {
             background-color: #2a6b66;
             border-color: #2a6b66;
         }
+
         .text-primary {
             color: #317a75 !important;
         }
+
         .bg-primary {
             background-color: #317a75 !important;
         }
