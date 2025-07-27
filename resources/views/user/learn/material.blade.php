@@ -47,18 +47,30 @@
             </div>
         </div>
 
-        {{-- Tombol Navigasi Materi --}}
+        {{-- Tombol Navigasi Materi) --}}
         <div class="d-flex justify-content-between mt-5">
-            <a href="{{ route('learn.track.show', $track) }}" class="btn btn-outline-secondary">
-                <i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Materi
-            </a>
+
+                <a href="{{ route('learn.track.show', $track) }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Materi
+                </a>
 
             {{-- Tombol Kerjakan Kuis (hanya muncul jika ada kuis) --}}
-            {{-- @if ($material->quiz)
-                <a href="{{ route('quiz.start', $material) }}" class="btn btn-success fw-semibold">
-                    <i class="fas fa-tasks me-2"></i> Kerjakan Kuis
-                </a>
-            @endif --}}
+            @if ($material->quiz)
+                @php
+                   $alreadySubmitted = $material->quiz->submissions()->where('user_id', auth()->id())->first();
+                @endphp
+
+                @if ($alreadySubmitted)
+                    <button class="btn btn-secondary fw-semibold" disabled>
+                        <i class="fas fa-check-circle me-2"></i> Kuis Sudah Dikerjakan
+                    </button>
+                @else
+                    <a href="{{ route('user.quiz.start', $material->quiz->id) }}" class="btn btn-success fw-semibold">
+                    <i class="fas fa-tasks me-2"></i> Mulai Kuis
+                    </a>
+                @endif
+            @endif
+        </div>
         </div>
 
         {{-- ====================================================== --}}

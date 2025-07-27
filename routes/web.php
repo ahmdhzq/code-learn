@@ -19,6 +19,8 @@ use App\Http\Controllers\User\LeaderboardController;
 use App\Http\Controllers\User\LearningController;
 use App\Http\Controllers\User\UserCommentController;
 use App\Http\Controllers\User\UserDashboardController;
+use App\Http\Controllers\User\QuizController as UserQuizController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +86,17 @@ Route::middleware(['auth', 'can:upload-materi'])->group(function () {
     Route::post('/submit-material', [MaterialSubmissionController::class, 'store'])->name('materials.store');
     Route::get('/my-submissions', [MaterialSubmissionController::class, 'history'])->name('materials.history');
 });
+
+Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('quiz')->name('quiz.')->group(function () {
+        Route::get('/{quiz}/start', [UserQuizController::class, 'start'])->name('start');
+        Route::post('/{quiz}/question/{question}', [UserQuizController::class, 'answer'])->name('answer');
+        Route::get('/{quiz}/submit', [UserQuizController::class, 'submit'])->name('submit');
+        Route::get('/result/{submission}', [UserQuizController::class, 'result'])->name('result');
+    });
+});
+
 
 // Memuat rute autentikasi (login, register, dll.) dari file terpisah
 require __DIR__ . '/auth.php';
