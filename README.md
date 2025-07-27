@@ -1,6 +1,6 @@
 # 🚀 CodeLearn - Platform Edukasi Koding Interaktif
 
-![Tangkapan Layar Dashboard Pengguna](https://i.imgur.com/your-user-dashboard-image.png)
+![Tangkapan Layar Dashboard Pengguna](https://github.com/ahmdhzq/code-learn/blob/main/public/assets/documentation/image.png?raw=true)
 
 CodeLearn adalah sebuah platform edukasi berbasis web yang dirancang untuk membuat proses belajar koding menjadi lebih interaktif, terstruktur, dan menyenangkan. Proyek ini dibangun menggunakan Laravel 11 sebagai backend dengan fokus pada pengalaman pengguna yang dinamis dan panel admin yang komprehensif untuk pengelolaan konten.
 

@@ -92,55 +92,17 @@
             if (!ckEditorInstance) {
                 ckEditorInstance = CKEDITOR.replace('content_article', {
                     height: 300,
-                    toolbar: [
-                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
-                        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
-                        { name: 'links', items: ['Link', 'Unlink'] },
-                        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
-                        { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
-                        { name: 'colors', items: ['TextColor', 'BGColor'] },
-                        { name: 'tools', items: ['Maximize', 'Source'] }
-                    ],
-                    removeButtons: 'Save,NewPage,Preview,Print',
-                    // Konfigurasi upload untuk browse image
+                    // Konfigurasi route untuk upload gambar oleh user
                     filebrowserImageUploadUrl: "{{ route('user.ckeditor.upload') }}",
-                    // Allow all content
-                    allowedContent: true,
-                    // Auto grow
-                    autoGrow_onStartup: true,
-                    autoGrow_maxHeight: 600,
-                    // Upload URL untuk drag & drop dan paste
                     uploadUrl: "{{ route('user.ckeditor.upload') }}",
-                    // Extra plugins untuk clipboard dan upload
-                    extraPlugins: 'uploadimage,clipboard',
-                    // Image upload configuration
-                    imageUploadUrl: "{{ route('user.ckeditor.upload') }}"
+                    extraPlugins: 'uploadimage' // Plugin yang diperlukan untuk upload
                 });
 
-                // Add CSRF token to all AJAX requests
+                // Menambahkan CSRF token ke setiap request upload dari CKEditor
+                // Ini akan memperbaiki error 419 Page Expired
                 ckEditorInstance.on('fileUploadRequest', function(evt) {
-                    var fileLoader = evt.data.fileLoader,
-                        formData = new FormData(),
-                        xhr = fileLoader.xhr;
-
-                    xhr.setRequestHeader('X-CSRF-TOKEN', "{{ csrf_token() }}");
-                    
-                    formData.append('upload', fileLoader.file);
-                    formData.append('_token', "{{ csrf_token() }}");
-                    
-                    fileLoader.xhr.send(formData);
-                });
-
-                // Handle upload response
-                ckEditorInstance.on('fileUploadResponse', function(evt) {
-                    var data = evt.data,
-                        xhr = data.fileLoader.xhr,
-                        response = xhr.responseText.split('|');
-
-                    if (response.length == 2) {
-                        data.url = response[1];
-                        evt.stop();
-                    }
+                    var xhr = evt.data.fileLoader.xhr;
+                    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
                 });
             }
         }
@@ -153,20 +115,17 @@
         }
 
         function toggleContentFields() {
-            // Hide semua field
+            // Sembunyikan semua field konten
             for (const key in contentFields) {
                 if (contentFields[key]) {
                     contentFields[key].style.display = 'none';
                 }
             }
-
+            // Tampilkan field yang dipilih
             const selectedType = typeSelect.value;
-            
-            // Show field yang dipilih
             if (contentFields[selectedType]) {
                 contentFields[selectedType].style.display = 'block';
-                
-                // Inisialisasi CKEditor untuk artikel
+                // Inisialisasi atau hancurkan CKEditor berdasarkan pilihan
                 if (selectedType === 'article') {
                     setTimeout(initCKEditor, 100);
                 } else {
@@ -175,13 +134,13 @@
             }
         }
 
-        // Inisialisasi pertama kali
+        // Jalankan saat halaman dimuat
         toggleContentFields();
 
-        // Event listener untuk perubahan tipe
+        // Tambahkan event listener untuk perubahan dropdown
         typeSelect.addEventListener('change', toggleContentFields);
 
-        // Update CKEditor sebelum submit form
+        // Update elemen textarea sebelum form disubmit
         document.querySelector('form').addEventListener('submit', function(e) {
             if (ckEditorInstance) {
                 ckEditorInstance.updateElement();
