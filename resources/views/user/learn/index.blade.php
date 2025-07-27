@@ -19,7 +19,6 @@
                             <h5 class="card-title fw-bold fs-4 mb-2">{{ $track->name }}</h5>
                             <p class="card-text text-muted small">{{ $track->description }}</p>
 
-                            {{-- [BARU] Daftar Preview Materi --}}
                             <div class="mt-3 mb-4 flex-grow-1">
                                 <h6 class="small text-uppercase fw-bold text-muted">Beberapa Materi</h6>
                                 <ul class="list-group list-group-flush small">
@@ -34,7 +33,7 @@
                                     @endforelse
                                 </ul>
                             </div>
-                            
+
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge bg-light text-dark rounded-pill px-3 py-2">
                                     <i class="fas fa-book-open me-2"></i>{{ $track->materials_count }} Materi
@@ -53,4 +52,6 @@
             @endforelse
         </div>
     </div>
+    @include('user.partials.footer')
+
 @endsection

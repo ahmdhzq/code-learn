@@ -49,7 +49,7 @@
                 @if ($alreadySubmitted)
                     <button class="btn btn-secondary fw-semibold" disabled><i class="fas fa-check-circle me-2"></i> Kuis Sudah Dikerjakan</button>
                 @else
-                    <a href="#" class="btn btn-success fw-semibold"><i class="fas fa-tasks me-2"></i> Mulai Kuis</a>
+                    <a href="{{ route('user.quiz.start', $material->quiz) }}" class="btn btn-success fw-semibold"><i class="fas fa-tasks me-2"></i> Mulai Kuis</a>
                 @endif
             @endif
         </div>
@@ -83,6 +83,7 @@
         </div>
 
     </div>
+    @include('user.partials.footer')
 @endsection
 
 @push('styles')

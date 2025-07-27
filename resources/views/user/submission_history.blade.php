@@ -57,4 +57,5 @@
             </div>
         </div>
     </div>
+    @include('user.partials.footer')
 @endsection

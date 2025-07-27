@@ -69,7 +69,6 @@
 @endsection
 
 @push('scripts')
-<!-- CKEditor 4 -->
 <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
 <script>
@@ -110,7 +109,6 @@
         }
 
         function toggleContentFields() {
-            // Sembunyikan semua field
             for (const key in contentFields) {
                 if (contentFields[key]) {
                     contentFields[key].style.display = 'none';
@@ -123,23 +121,18 @@
             if (contentFields[selectedType]) {
                 contentFields[selectedType].style.display = 'block';
                 
-                // Jika artikel dipilih, inisialisasi CKEditor
                 if (selectedType === 'article') {
                     setTimeout(initCKEditor, 100);
                 } else {
-                    // Hapus CKEditor jika bukan artikel
                     destroyCKEditor();
                 }
             }
         }
 
-        // Jalankan fungsi pertama kali
         toggleContentFields();
         
-        // Event listener untuk perubahan tipe
         typeSelect.addEventListener('change', toggleContentFields);
 
-        // Update data sebelum form submit
         document.querySelector('form').addEventListener('submit', function(e) {
             if (ckEditorInstance) {
                 ckEditorInstance.updateElement();

@@ -99,6 +99,7 @@
         @endif
         
     </div>
+    @include('user.partials.footer')
 @endsection
 
 @push('styles')

@@ -297,6 +297,40 @@
                 align-self: flex-start;
             }
         }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .hover-opacity-100:hover {
+            opacity: 1 !important;
+        }
+
+        .min-vh-75 {
+            min-height: 75vh;
+        }
+
+        .btn-primary {
+            background-color: #317a75;
+            border-color: #317a75;
+        }
+
+        .btn-primary:hover {
+            background-color: #2a6b66;
+            border-color: #2a6b66;
+        }
+
+        .text-primary {
+            color: #317a75 !important;
+        }
+
+        .bg-primary {
+            background-color: #317a75 !important;
+        }
     </style>
     @stack('styles')
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>

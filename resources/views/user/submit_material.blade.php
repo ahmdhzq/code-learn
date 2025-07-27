@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-
+@include('user.partials.footer')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const typeSelect = document.getElementById('type');

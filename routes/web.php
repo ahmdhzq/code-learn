@@ -30,6 +30,9 @@ use App\Http\Controllers\User\QuizController as UserQuizController;
 
 // Rute untuk halaman utama apabila user belum login atau register
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+Route::get('/our-team', function () {
+    return view('user.team');
+})->name('team.show');
 
 // Rute untuk manajemen profil pengguna (bawaan Breeze)
 Route::middleware('auth')->group(function () {

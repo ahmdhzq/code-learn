@@ -144,6 +144,7 @@
             </div>
         </div>
     </div>
+    @include('user.partials.footer')
 
     <style>
         .card {
