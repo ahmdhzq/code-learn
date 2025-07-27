@@ -11,24 +11,29 @@
 </div>
 
 <div class="container py-5">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm animate__animated animate__fadeInUp">
         <div class="card-body">
             <div class="list-group list-group-flush">
                 @forelse ($users as $user)
                     @php
                         $points = $user->points ?? 0;
                         $badge = '🥉 Bronze';
-
+                        $badgeColor = 'text-warning'; // default bronze
+                        
                         if ($points >= 400) {
                             $badge = '🥇 Gold';
+                            $badgeColor = 'text-warning-emphasis'; // emas
                         } elseif ($points >= 200) {
                             $badge = '🥈 Silver';
+                            $badgeColor = 'text-secondary'; // perak
                         }
+
+                        $isCurrentUser = auth()->id() == $user->id ? 'bg-primary-subtle' : '';
                     @endphp
 
-                    <div class="list-group-item d-flex align-items-center p-3 {{ auth()->id() == $user->id ? 'bg-primary-subtle' : '' }}">
+                    <div class="list-group-item d-flex align-items-center p-3 {{ $isCurrentUser }} hover-shadow-sm" style="transition: background 0.2s;">
                         <!-- Rank -->
-                        <div class="col-1 fw-bold fs-5 text-center">
+                        <div class="col-1 fw-bold fs-5 text-center text-muted">
                             {{ $loop->iteration }}
                         </div>
 
@@ -37,7 +42,7 @@
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=random" alt="Avatar" class="rounded-circle me-3" width="50">
                             <div>
                                 <h5 class="fw-semibold mb-0">{{ $user->name }}</h5>
-                                <small class="text-muted">{{ $badge }}</small>
+                                <small class="{{ $badgeColor }}">{{ $badge }}</small>
                             </div>
                         </div>
 
