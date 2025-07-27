@@ -18,6 +18,8 @@
 /docker-data
 /storage/*.key
 /storage/pail
+/storage/app/public/images/materials/
+/public/storage/images/materials/
 /vendor
 Homestead.json
 Homestead.yaml

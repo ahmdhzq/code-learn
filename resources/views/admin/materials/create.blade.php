@@ -71,22 +71,30 @@
         let ckEditorInstance = null;
 
         function initCKEditor() {
-            if (!ckEditorInstance) {
-                ckEditorInstance = CKEDITOR.replace('content_article', {
-                    height: 300,
-                    toolbar: [
-                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
-                        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
-                        { name: 'links', items: ['Link', 'Unlink'] },
-                        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
-                        { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
-                        { name: 'colors', items: ['TextColor', 'BGColor'] },
-                        { name: 'tools', items: ['Maximize', 'Source'] }
-                    ],
-                    removeButtons: 'Save,NewPage,Preview,Print',
-                    filebrowserUploadMethod: 'form'
-                });
-            }
+            if (ckEditorInstance) return;
+
+            ckEditorInstance = CKEDITOR.replace('content_article', {
+                height: 300,
+                filebrowserImageUploadUrl: "{{ route('admin.ckeditor.upload') }}",
+                uploadUrl: "{{ route('admin.ckeditor.upload') }}",
+                allowedContent: true,
+            });
+
+            ckEditorInstance.on('fileUploadRequest', function(evt) {
+                var fileLoader = evt.data.fileLoader,
+                    formData = new FormData(),
+                    xhr = fileLoader.xhr;
+
+                xhr.setRequestHeader('X-CSRF-TOKEN', "{{ csrf_token() }}");
+                
+                formData.append('upload', fileLoader.file, fileLoader.fileName);
+                formData.append('_token', "{{ csrf_token() }}"); 
+                
+                fileLoader.xhr.send(formData);
+
+                evt.stop();
+            });
+
         }
 
         function destroyCKEditor() {

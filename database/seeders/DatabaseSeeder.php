@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             TrackSeeder::class,
-            CommentSeeder::class,
+            // CommentSeeder::class,
             PointsSeeder::class,
         ]);
     }

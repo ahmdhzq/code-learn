@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::post('/comments', [UserCommentController::class, 'store'])->name('comments.store');
     Route::post('/comments/{comment}/like', [CommentLikeController::class, 'toggle'])->name('comments.like');
+    Route::post('/admin/ckeditor/upload', [App\Http\Controllers\ImageUploadController::class, 'uploadForAdmin'])->name('admin.ckeditor.upload');
+    Route::post('/user/ckeditor/upload', [App\Http\Controllers\ImageUploadController::class, 'uploadForUser'])->name('user.ckeditor.upload');
+    Route::delete('/ckeditor/delete-image', [App\Http\Controllers\ImageUploadController::class, 'deleteImage'])->name('ckeditor.delete.image');
 });
 
 
