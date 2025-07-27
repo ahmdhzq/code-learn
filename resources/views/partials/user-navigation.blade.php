@@ -58,7 +58,6 @@
                             @if (Auth::user()->role === 'admin')
                                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Panel Admin</a></li>
                             @endif
-                            <li><a class="dropdown-item" href="{{ route('materials.history') }}">Riwayat Pengajuan</a></li>
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profil Saya</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -95,9 +94,7 @@
     </div>
     <div class="offcanvas-body d-flex flex-column">
         @auth
-            {{-- Menu Mobile Pengguna Login --}}
             <ul class="navbar-nav flex-grow-1">
-                 {{-- [TAMBAHAN] Link Home untuk menu mobile --}}
                  <li class="nav-item">
                     <a class="nav-link fs-5 mb-2 {{ request()->routeIs('welcome') ? 'active' : '' }}"
                         href="{{ route('welcome') }}">Home</a>

@@ -27,10 +27,10 @@
 
             <!-- Input Dinamis Berdasarkan Tipe -->
             <div id="content-fields">
-                <!-- Field untuk Artikel -->
+                <!-- Field untuk Artikel dengan CKEditor -->
                 <div id="field-article" class="mb-3 content-field">
                     <label for="content_article" class="form-label">Isi Artikel</label>
-                    <textarea name="content_article" id="content_article" class="form-control @error('content_article') is-invalid @enderror" rows="10">{{ old('content_article') }}</textarea>
+                    <textarea name="content_article" id="content_article" class="form-control @error('content_article') is-invalid @enderror">{{ old('content_article') }}</textarea>
                     @error('content_article') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <!-- Field untuk Video -->
@@ -57,6 +57,9 @@
 @endsection
 
 @push('scripts')
+<!-- CKEditor 4 -->
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const typeSelect = document.getElementById('type');
@@ -66,20 +69,70 @@
             pdf: document.getElementById('field-pdf'),
         };
 
+        let ckEditorInstance = null;
+
+        function initCKEditor() {
+            if (!ckEditorInstance) {
+                ckEditorInstance = CKEDITOR.replace('content_article', {
+                    height: 300,
+                    toolbar: [
+                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
+                        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+                        { name: 'links', items: ['Link', 'Unlink'] },
+                        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
+                        { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                        { name: 'colors', items: ['TextColor', 'BGColor'] },
+                        { name: 'tools', items: ['Maximize', 'Source'] }
+                    ],
+                    removeButtons: 'Save,NewPage,Preview,Print',
+                    filebrowserUploadMethod: 'form'
+                });
+            }
+        }
+
+        function destroyCKEditor() {
+            if (ckEditorInstance) {
+                ckEditorInstance.destroy();
+                ckEditorInstance = null;
+            }
+        }
+
         function toggleContentFields() {
+            // Sembunyikan semua field
             for (const key in contentFields) {
                 if (contentFields[key]) {
                     contentFields[key].style.display = 'none';
                 }
             }
+
             const selectedType = typeSelect.value;
+            
+            // Tampilkan field yang dipilih
             if (contentFields[selectedType]) {
                 contentFields[selectedType].style.display = 'block';
+                
+                // Jika artikel dipilih, inisialisasi CKEditor
+                if (selectedType === 'article') {
+                    setTimeout(initCKEditor, 100);
+                } else {
+                    // Hapus CKEditor jika bukan artikel
+                    destroyCKEditor();
+                }
             }
         }
 
+        // Jalankan fungsi pertama kali
         toggleContentFields();
+        
+        // Event listener untuk perubahan tipe
         typeSelect.addEventListener('change', toggleContentFields);
+
+        // Update data sebelum form submit
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (ckEditorInstance) {
+                ckEditorInstance.updateElement();
+            }
+        });
     });
 </script>
 @endpush

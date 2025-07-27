@@ -39,9 +39,24 @@
 
             <!-- Input Dinamis Berdasarkan Tipe -->
             <div id="content-fields">
-                <div id="field-article" class="mb-3 content-field"><label for="content_article" class="form-label">Isi Artikel</label><textarea name="content_article" id="content_article" class="form-control" rows="10">{{ old('content_article') }}</textarea></div>
-                <div id="field-video" class="mb-3 content-field"><label for="content_video" class="form-label">URL Video YouTube</label><input type="text" name="content_video" id="content_video" class="form-control" value="{{ old('content_video') }}"></div>
-                <div id="field-pdf" class="mb-3 content-field"><label for="content_pdf" class="form-label">Upload File PDF</label><input type="file" name="content_pdf" id="content_pdf" class="form-control" accept=".pdf"></div>
+                <!-- Field untuk Artikel dengan CKEditor -->
+                <div id="field-article" class="mb-3 content-field">
+                    <label for="content_article" class="form-label">Isi Artikel</label>
+                    <textarea name="content_article" id="content_article" class="form-control @error('content_article') is-invalid @enderror">{{ old('content_article') }}</textarea>
+                    @error('content_article') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <!-- Field untuk Video -->
+                <div id="field-video" class="mb-3 content-field">
+                    <label for="content_video" class="form-label">URL Video YouTube</label>
+                    <input type="text" name="content_video" id="content_video" class="form-control @error('content_video') is-invalid @enderror" value="{{ old('content_video') }}" placeholder="Contoh: https://www.youtube.com/watch?v=xxxxxx">
+                    @error('content_video') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <!-- Field untuk PDF -->
+                <div id="field-pdf" class="mb-3 content-field">
+                    <label for="content_pdf" class="form-label">Upload File PDF</label>
+                    <input type="file" name="content_pdf" id="content_pdf" class="form-control @error('content_pdf') is-invalid @enderror" accept=".pdf">
+                    @error('content_pdf') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
             </div>
             
             <div class="d-flex justify-content-end mt-4">
@@ -54,8 +69,10 @@
 @endsection
 
 @push('scripts')
+<!-- CKEditor 4 -->
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
 <script>
-    // Script untuk menampilkan/menyembunyikan field konten
     document.addEventListener('DOMContentLoaded', function() {
         const typeSelect = document.getElementById('type');
         const contentFields = {
@@ -64,17 +81,70 @@
             pdf: document.getElementById('field-pdf'),
         };
 
-        function toggleContentFields() {
-            for (const key in contentFields) {
-                if (contentFields[key]) contentFields[key].style.display = 'none';
-            }
-            const selectedType = typeSelect.value;
-            if (contentFields[selectedType]) {
-                contentFields[selectedType].style.display = 'block';
+        let ckEditorInstance = null;
+
+        function initCKEditor() {
+            if (!ckEditorInstance) {
+                ckEditorInstance = CKEDITOR.replace('content_article', {
+                    height: 300,
+                    toolbar: [
+                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
+                        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+                        { name: 'links', items: ['Link', 'Unlink'] },
+                        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
+                        { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                        { name: 'colors', items: ['TextColor', 'BGColor'] },
+                        { name: 'tools', items: ['Maximize', 'Source'] }
+                    ],
+                    removeButtons: 'Save,NewPage,Preview,Print',
+                    filebrowserUploadMethod: 'form'
+                });
             }
         }
+
+        function destroyCKEditor() {
+            if (ckEditorInstance) {
+                ckEditorInstance.destroy();
+                ckEditorInstance = null;
+            }
+        }
+
+        function toggleContentFields() {
+            // Sembunyikan semua field
+            for (const key in contentFields) {
+                if (contentFields[key]) {
+                    contentFields[key].style.display = 'none';
+                }
+            }
+
+            const selectedType = typeSelect.value;
+            
+            // Tampilkan field yang dipilih
+            if (contentFields[selectedType]) {
+                contentFields[selectedType].style.display = 'block';
+                
+                // Jika artikel dipilih, inisialisasi CKEditor
+                if (selectedType === 'article') {
+                    setTimeout(initCKEditor, 100);
+                } else {
+                    // Hapus CKEditor jika bukan artikel
+                    destroyCKEditor();
+                }
+            }
+        }
+
+        // Jalankan fungsi pertama kali
         toggleContentFields();
+        
+        // Event listener untuk perubahan tipe
         typeSelect.addEventListener('change', toggleContentFields);
+
+        // Update data sebelum form submit
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (ckEditorInstance) {
+                ckEditorInstance.updateElement();
+            }
+        });
     });
 </script>
 @endpush

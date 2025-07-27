@@ -28,49 +28,30 @@
                 @if ($material->type === 'video')
                     <div style="max-width: 800px; margin: auto;">
                         <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/{{ $material->content }}"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
+                            <iframe src="https://www.youtube.com/embed/{{ $material->content }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
                 @elseif($material->type === 'article')
-                    <div class="article-content">
-                        {!! $material->content !!}
-                    </div>
+                    <div class="article-content">{!! $material->content !!}</div>
                 @elseif($material->type === 'pdf')
-                    <div class="ratio ratio-4x3">
-                        <iframe src="{{ Storage::url($material->content) }}" allowfullscreen></iframe>
-                    </div>
+                    <div class="ratio ratio-4x3"><iframe src="{{ Storage::url($material->content) }}" allowfullscreen></iframe></div>
                 @endif
             </div>
         </div>
 
-        {{-- Tombol Navigasi Materi) --}}
+        {{-- Tombol Navigasi Materi --}}
         <div class="d-flex justify-content-between mt-5">
-
-                <a href="{{ route('learn.track.show', $track) }}" class="btn btn-outline-secondary">
-                    <i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Materi
-                </a>
-
-            {{-- Tombol Kerjakan Kuis (hanya muncul jika ada kuis) --}}
+            <a href="{{ route('learn.track.show', $track) }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Materi</a>
             @if ($material->quiz)
                 @php
-                   $alreadySubmitted = $material->quiz->submissions()->where('user_id', auth()->id())->first();
+                    $alreadySubmitted = $material->quiz->submissions()->where('user_id', auth()->id())->first();
                 @endphp
-
                 @if ($alreadySubmitted)
-                    <button class="btn btn-secondary fw-semibold" disabled>
-                        <i class="fas fa-check-circle me-2"></i> Kuis Sudah Dikerjakan
-                    </button>
+                    <button class="btn btn-secondary fw-semibold" disabled><i class="fas fa-check-circle me-2"></i> Kuis Sudah Dikerjakan</button>
                 @else
-                    <a href="{{ route('user.quiz.start', $material->quiz->id) }}" class="btn btn-success fw-semibold">
-                    <i class="fas fa-tasks me-2"></i> Mulai Kuis
-                    </a>
+                    <a href="#" class="btn btn-success fw-semibold"><i class="fas fa-tasks me-2"></i> Mulai Kuis</a>
                 @endif
             @endif
-        </div>
         </div>
 
         {{-- ====================================================== --}}
@@ -80,23 +61,18 @@
 
         <div class="mt-5">
             <h3 class="fw-semibold mb-4">Diskusi Materi</h3>
-
-            {{-- Form untuk Menambah Komentar Baru --}}
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-body p-4">
                     <form action="{{ route('comments.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="material_id" value="{{ $material->id }}">
                         <div class="mb-3">
-                            <textarea class="form-control" name="body" rows="3"
-                                placeholder="Tulis komentar atau pertanyaan Anda di sini..." required></textarea>
+                            <textarea class="form-control" name="body" rows="3" placeholder="Tulis komentar atau pertanyaan Anda di sini..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary fw-semibold">Kirim Komentar</button>
                     </form>
                 </div>
             </div>
-
-            {{-- Daftar Komentar --}}
             @forelse ($comments as $comment)
                 @include('user.partials.comment', ['comment' => $comment, 'material' => $material])
             @empty
@@ -105,6 +81,7 @@
                 </div>
             @endforelse
         </div>
+
     </div>
 @endsection
 

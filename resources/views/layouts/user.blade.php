@@ -306,7 +306,7 @@
 
     @include('partials.user-navigation')
 
-    <main class="mt-5 pt-5">
+    <main class="mt-4 pt-5">
         @yield('content')
     </main>
 
