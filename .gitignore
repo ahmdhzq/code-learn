@@ -1,26 +1,37 @@
-*.log
-.DS_Store
-.env
-.env.backup
-.env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
+# Dependencies
 /node_modules
 /public/hot
 /public/storage
-/docker-data
-/storage/*.key
-/storage/pail
-/storage/app/public/images/materials/
-/public/storage/images/materials/
 /vendor
+/storage/app/public
+
+# Environment Files
+.env
+.env.backup
+.env.production
 Homestead.json
 Homestead.yaml
+auth.json
+
+# Log & Cache Files
+*.log
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+.phpunit.result.cache
+
+# IDE & System Files
+.DS_Store
 Thumbs.db
+.idea
+.vscode
+.fleet
+.zed
+.phpactor.json
+
+# Docker
+/docker-data
+
+# Security
+/storage/*.key

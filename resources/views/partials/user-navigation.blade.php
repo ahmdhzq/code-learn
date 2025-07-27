@@ -61,7 +61,6 @@
                             @if (Auth::user()->role === 'admin')
                                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Panel Admin</a></li>
                             @endif
-                            <li><a class="dropdown-item" href="{{ route('materials.history') }}">Riwayat Pengajuan</a></li>
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profil Saya</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
@@ -136,7 +135,6 @@
                 @if (Auth::user()->role === 'admin')
                     <a class="d-block text-white text-decoration-none mb-2" href="{{ route('admin.dashboard') }}">Panel Admin</a>
                 @endif
-                <a class="d-block text-white text-decoration-none mb-2" href="{{ route('materials.history') }}">Riwayat Pengajuan</a>
                 <a class="d-block text-white text-decoration-none mb-3" href="{{ route('profile.show') }}">Profil Saya</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
