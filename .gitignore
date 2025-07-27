@@ -20,6 +20,7 @@ auth.json
 /storage/framework/sessions
 /storage/framework/views
 .phpunit.result.cache
+/bootstrap/cache/*.php
 
 # IDE & System Files
 .DS_Store
