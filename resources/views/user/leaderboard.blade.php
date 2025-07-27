@@ -15,17 +15,36 @@
         <div class="card-body">
             <div class="list-group list-group-flush">
                 @forelse ($users as $user)
-                    {{-- Beri sorotan jika itu adalah pengguna yang sedang login --}}
+                    @php
+                        $points = $user->points ?? 0;
+                        $badge = '🥉 Bronze';
+
+                        if ($points >= 400) {
+                            $badge = '🥇 Gold';
+                        } elseif ($points >= 200) {
+                            $badge = '🥈 Silver';
+                        }
+                    @endphp
+
                     <div class="list-group-item d-flex align-items-center p-3 {{ auth()->id() == $user->id ? 'bg-primary-subtle' : '' }}">
-                        <div class="col-1 fw-bold fs-4 text-center">{{ $loop->iteration }}</div>
+                        <!-- Rank -->
+                        <div class="col-1 fw-bold fs-5 text-center">
+                            {{ $loop->iteration }}
+                        </div>
+
+                        <!-- Avatar and Info -->
                         <div class="col-8 d-flex align-items-center">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=random" alt="Avatar" class="rounded-circle me-3" width="50">
                             <div>
                                 <h5 class="fw-semibold mb-0">{{ $user->name }}</h5>
-                                <small class="text-muted">Peringkat: {{ $user->rank ?? 'Bronze' }}</small> [cite: 22]
+                                <small class="text-muted">{{ $badge }}</small>
                             </div>
                         </div>
-                        <div class="col-3 text-end fw-bold fs-5">{{ $user->points ?? 0 }} Poin</div> [cite: 21]
+
+                        <!-- Points -->
+                        <div class="col-3 text-end fw-bold fs-5 text-primary">
+                            {{ number_format($points) }} Poin
+                        </div>
                     </div>
                 @empty
                     <div class="text-center p-5">
