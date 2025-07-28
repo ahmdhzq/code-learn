@@ -50,7 +50,7 @@
                         <tbody>
                             @forelse ($tracks as $track)
                                 <tr>
-                                    <td>{{ $track->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $track->name }}</td>
                                     <td>{{ Str::limit($track->description, 50) }}</td>
                                     <td>{{ $track->materials()->count() }}</td>

@@ -17,9 +17,9 @@
                 <table class="table table-hover table-bordered">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">No</th>
                             <th scope="col">Judul</th>
-                            <th scope="col">Track</th>
+                            <th scope="col">learning Path</th>
                             <th scope="col">Pengirim</th>
                             <th scope="col" class="text-center">Aksi</th>
                         </tr>
