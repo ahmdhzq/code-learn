@@ -32,7 +32,7 @@ Platform ini memiliki dua peran utama dengan fitur yang berbeda:
 ## 🛠️ Teknologi yang Digunakan
 
 - **Backend**: Laravel 11
-- **Frontend**: Blade, Bootstrap 5, Summernote (Rich Text Editor), Chart.js
+- **Frontend**: Blade, Bootstrap 5, CKEditor (Rich Text Editor), Chart.js
 - **Database**: PostgreSQL
 - **Development Tool**: Vite
 
