@@ -15,7 +15,7 @@
     <div class="bg-white position-relative overflow-hidden">
         <div class="container py-5">
             <div class="row align-items-center min-vh-75">
-                <div class="col-lg-6 pe-lg-5">
+                <div class="col-lg-6 pe-lg-5">admin/tracks/1/materials
                     <div class="mb-4">
                         <span class="badge bg-primary bg-opacity-10 text-white px-3 py-2 rounded-pill mb-3">
                             <i class="fas fa-star me-2"></i>Platform #1 untuk Belajar Coding
@@ -365,15 +365,6 @@
                                     style="width: 80px; height: 80px; object-fit: cover;">
                                 <h6 class="fw-bold small mt-2 mb-1">Reza M.</h6>
                                 <p class="text-muted" style="font-size: 0.75rem;">Backend Dev</p>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-2">
-                            <div class="text-center">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-                                    alt="Student" class="rounded-circle shadow-sm"
-                                    style="width: 80px; height: 80px; object-fit: cover;">
-                                <h6 class="fw-bold small mt-2 mb-1">Lisa A.</h6>
-                                <p class="text-muted" style="font-size: 0.75rem;">Frontend Dev</p>
                             </div>
                         </div>
                     </div>

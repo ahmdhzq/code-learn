@@ -28,32 +28,42 @@
                 @if ($material->type === 'video')
                     <div style="max-width: 800px; margin: auto;">
                         <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/{{ $material->content }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/{{ $material->content }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
                         </div>
                     </div>
                 @elseif($material->type === 'article')
                     <div class="article-content">{!! $material->content !!}</div>
                 @elseif($material->type === 'pdf')
-                    <div class="ratio ratio-4x3"><iframe src="{{ Storage::url($material->content) }}" allowfullscreen></iframe></div>
+                    <div class="ratio ratio-4x3"><iframe src="{{ Storage::url($material->content) }}"
+                            allowfullscreen></iframe></div>
                 @endif
             </div>
         </div>
 
         {{-- Tombol Navigasi Materi --}}
         <div class="d-flex justify-content-between mt-5">
-            <a href="{{ route('learn.track.show', $track) }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Materi</a>
+            <a href="{{ route('learn.track.show', $track) }}" class="btn btn-outline-secondary"><i
+                    class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Materi</a>
             @if ($material->quiz)
                 @php
-                    $alreadySubmitted = $material->quiz->submissions()->where('user_id', auth()->id())->first();
+                    $alreadySubmitted = $material->quiz
+                        ->submissions()
+                        ->where('user_id', auth()->id())
+                        ->first();
                 @endphp
                 @if ($alreadySubmitted)
-                    <button class="btn btn-secondary fw-semibold" disabled><i class="fas fa-check-circle me-2"></i> Kuis Sudah Dikerjakan</button>
+                    <button class="btn btn-secondary fw-semibold" disabled><i class="fas fa-check-circle me-2"></i> Kuis
+                        Sudah Dikerjakan</button>
                 @else
-                    <a href="{{ route('user.quiz.start', $material->quiz) }}" class="btn btn-success fw-semibold"><i class="fas fa-tasks me-2"></i> Mulai Kuis</a>
+                    {{-- PERUBAHAN DI SINI --}}
+                    <a href="{{ route('user.quiz.confirmation', $material->quiz) }}" class="btn btn-success fw-semibold"><i
+                            class="fas fa-tasks me-2"></i> Lanjut ke Kuis</a>
                 @endif
             @endif
         </div>
-
         {{-- ====================================================== --}}
         {{-- SISTEM KOMENTAR DAN DISKUSI --}}
         {{-- ====================================================== --}}
@@ -67,7 +77,8 @@
                         @csrf
                         <input type="hidden" name="material_id" value="{{ $material->id }}">
                         <div class="mb-3">
-                            <textarea class="form-control" name="body" rows="3" placeholder="Tulis komentar atau pertanyaan Anda di sini..." required></textarea>
+                            <textarea class="form-control" name="body" rows="3"
+                                placeholder="Tulis komentar atau pertanyaan Anda di sini..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary fw-semibold">Kirim Komentar</button>
                     </form>

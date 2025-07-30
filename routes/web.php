@@ -96,11 +96,20 @@ Route::middleware(['auth', 'can:upload-materi'])->group(function () {
 Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::prefix('quiz')->name('quiz.')->group(function () {
-        Route::get('/{quiz}/start', [UserQuizController::class, 'start'])->name('start');
-        Route::post('/{quiz}/question/{question}', [UserQuizController::class, 'answer'])->name('answer');
-        Route::get('/{quiz}/submit', [UserQuizController::class, 'submit'])->name('submit');
-        Route::get('/result/{submission}', [UserQuizController::class, 'result'])->name('result');
-    });
+    Route::get('/{quiz}/confirmation', [UserQuizController::class, 'confirmation'])->name('confirmation');
+    
+    // POST untuk memulai kuis (membersihkan session)
+    Route::post('/{quiz}/start', [UserQuizController::class, 'start'])->name('start'); 
+    
+    // GET BARU untuk menampilkan soal kuis
+    Route::get('/{quiz}/question/{question}', [UserQuizController::class, 'showQuestion'])->name('question.show'); 
+    
+    // POST untuk menjawab soal
+    Route::post('/{quiz}/question/{question}/answer', [UserQuizController::class, 'answer'])->name('answer'); 
+    
+    Route::get('/{quiz}/submit', [UserQuizController::class, 'submit'])->name('submit');
+    Route::get('/result/{submission}', [UserQuizController::class, 'result'])->name('result');
+});
 });
 
 
