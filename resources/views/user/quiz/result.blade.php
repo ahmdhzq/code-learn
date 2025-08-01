@@ -9,7 +9,7 @@
     $correctAnswers = $submission->score;
     $wrongAnswers = $totalQuestions - $correctAnswers;
     $percentage = $totalQuestions > 0 ? round(($correctAnswers / $totalQuestions) * 100) : 0;
-    $finalScore = $correctAnswers * 10; // Asumsi setiap soal 10 poin
+    $finalScore = $percentage; 
 @endphp
 
 <div class="quiz-result-page">
