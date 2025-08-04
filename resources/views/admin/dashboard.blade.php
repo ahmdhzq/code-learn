@@ -87,7 +87,7 @@
 <div class="row g-4">
     <!-- Kolom untuk Grafik -->
     <div class="col-xl-8">
-        <div class="card stat-card h-100">
+        <div class="card stat-card h-100 p-3">
             <div class="card-header bg-transparent border-0 pb-0">
                 <h5 class="card-title mb-0 fw-semibold">Konten Dibuat per Bulan</h5>
             </div>
@@ -101,7 +101,7 @@
     
       <!-- Kolom untuk Aktivitas Terbaru -->
     <div class="col-xl-4">
-        <div class="card stat-card h-100">
+        <div class="card stat-card h-100 p-3">
             <div class="card-header bg-transparent border-0 pb-0">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0 fw-semibold">Learning Path Terbaru</h5>
