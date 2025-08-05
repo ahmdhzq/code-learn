@@ -15,7 +15,7 @@
     <div class="bg-white position-relative overflow-hidden">
         <div class="container py-5">
             <div class="row align-items-center min-vh-75">
-                <div class="col-lg-6 pe-lg-5">admin/tracks/1/materials
+                <div class="col-lg-6 pe-lg-5">
                     <div class="mb-4">
                         <span class="badge bg-primary bg-opacity-10 text-white px-3 py-2 rounded-pill mb-3">
                             <i class="fas fa-star me-2"></i>Platform #1 untuk Belajar Coding
